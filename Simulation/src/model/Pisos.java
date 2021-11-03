@@ -26,6 +26,4 @@ class Pisos {
         this.espacios = espacios;
     }
     
-    
-    
 }
