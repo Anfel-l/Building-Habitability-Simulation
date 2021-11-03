@@ -13,6 +13,19 @@ import java.util.LinkedList;
  */
 class Pisos {
     private LinkedList<Espacios> espacios;
+
+    public Pisos(LinkedList<Espacios> espacios) {
+        this.espacios = espacios;
+    }
+
+    public LinkedList<Espacios> getEspacios() {
+        return espacios;
+    }
+
+    public void setEspacios(LinkedList<Espacios> espacios) {
+        this.espacios = espacios;
+    }
+    
     
     
 }
