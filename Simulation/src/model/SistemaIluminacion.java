@@ -9,15 +9,8 @@ package model;
  *
  * @author USER
  */
-public class TiposEspacios {
-    private static float APARTAMENTO;
-    private static float PASILLO;
-    private static float RECEPCION;
+public class SistemaIluminacion 
+{
     
     
-    public void cargarEspacios()
-    {
-        
-        
-    }
 }

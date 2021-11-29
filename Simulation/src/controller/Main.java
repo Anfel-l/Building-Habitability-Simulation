@@ -5,6 +5,7 @@
  */
 package controller;
 
+import model.TiposLamparas;
 import view.View1;
 
 /**
@@ -18,9 +19,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        View1 interfaz = new View1();
-        System.out.println("Hola mundo");
-        interfaz.setVisible(true);
+        
+        TiposLamparas x = new TiposLamparas();
+        x.cargarValoresLamparas();
         
     }
     

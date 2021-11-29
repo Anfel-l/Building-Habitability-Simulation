@@ -14,4 +14,12 @@ public class TiposLamparas {
     private static float HALOGENAS;
     private static float FLUORESCENTES;
     private static float LED;
+    
+    public void cargarValoresLamparas()
+    {
+        INCANDESCENTES = 12;
+        HALOGENAS = 10;
+        FLUORESCENTES = 70;
+        LED =50; 
+    }
 }
