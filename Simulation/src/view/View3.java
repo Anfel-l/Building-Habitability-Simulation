@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Default_Package;
+package view;
 
 /**
  *
@@ -73,7 +73,6 @@ public class View3 extends javax.swing.JFrame {
         jButton3.setText("Next Floor");
         jButton3.setBorderPainted(false);
         jButton3.setFocusPainted(false);
-        jButton3.setOpaque(true);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -86,7 +85,6 @@ public class View3 extends javax.swing.JFrame {
         jButton4.setText("Add");
         jButton4.setBorderPainted(false);
         jButton4.setFocusPainted(false);
-        jButton4.setOpaque(true);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);

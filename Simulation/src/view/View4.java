@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Default_Package;
+package view;
 
 /**
  *
@@ -43,22 +43,18 @@ public class View4 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Fira Code", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 249, 255));
         jLabel2.setText("Luminancy level floor #N:");
-        jLabel2.setBorder(null);
 
         jLabel3.setFont(new java.awt.Font("Fira Code", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 249, 255));
         jLabel3.setText("Luminancy per Area:");
-        jLabel3.setBorder(null);
 
         jLabel4.setFont(new java.awt.Font("Fira Code", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 249, 255));
         jLabel4.setText("Working Area:");
-        jLabel4.setBorder(null);
 
         jLabel5.setFont(new java.awt.Font("Fira Code", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 249, 255));
         jLabel5.setText("Luminancy Average:");
-        jLabel5.setBorder(null);
 
         jLabel6.setFont(new java.awt.Font("Fira Code", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 249, 255));
@@ -84,7 +80,6 @@ public class View4 extends javax.swing.JFrame {
         jButton4.setText("Back");
         jButton4.setBorderPainted(false);
         jButton4.setFocusPainted(false);
-        jButton4.setOpaque(true);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
