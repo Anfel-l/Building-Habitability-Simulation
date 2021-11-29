@@ -13,9 +13,20 @@ class Espacios {
     
     //Parametros para calcular medidas del espacio
    //enum TiposEspacios{APARTAMENTO,PASILLO,RECEPCION}
+    
     private float ancho_de_espacio;
     private float largo_de_espacio;
     private float altura_de_espacio;
+    
+    private final float coeficiente_techo_reflexion;
+    private final float coeficiente_paredes_reflexion;
+    private final float coeficiente_suelo_reflexion;
+    
+    private float coeficiente_utilizacion;
+    private float coeficiente_mantenimiento;
+    
+    private float indice_local;
+    
     
     private Float tipo_de_espacio; //Valor obtenido segun reglas europeas
     
@@ -45,6 +56,13 @@ class Espacios {
         this.cantidad_de_lamparas = cantidad_de_lamparas;
         this.tipo_de_lamparas = tipo_de_lamparas;
         this.desplazamiento_de_lamparas = desplazamiento_de_lamparas;
+        
+        this.coeficiente_techo_reflexion  = (float) 0.5;
+        this.coeficiente_paredes_reflexion  = (float) 0.3;
+        this.coeficiente_suelo_reflexion  = (float) 0.1;
+        
+        
+        
     }
 
     public float getAncho_de_espacio() {

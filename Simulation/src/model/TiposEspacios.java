@@ -20,4 +20,28 @@ public class TiposEspacios {
         
         
     }
+
+    public static float getAPARTAMENTO() {
+        return APARTAMENTO;
+    }
+
+    public static void setAPARTAMENTO(float APARTAMENTO) {
+        TiposEspacios.APARTAMENTO = APARTAMENTO;
+    }
+
+    public static float getPASILLO() {
+        return PASILLO;
+    }
+
+    public static void setPASILLO(float PASILLO) {
+        TiposEspacios.PASILLO = PASILLO;
+    }
+
+    public static float getRECEPCION() {
+        return RECEPCION;
+    }
+
+    public static void setRECEPCION(float RECEPCION) {
+        TiposEspacios.RECEPCION = RECEPCION;
+    }
 }

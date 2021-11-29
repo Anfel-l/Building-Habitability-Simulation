@@ -13,10 +13,25 @@ import java.util.LinkedList;
  */
 class Pisos {
     private LinkedList<Espacios> espacios;
+    private int numero_piso;
 
     public Pisos(LinkedList<Espacios> espacios) {
         this.espacios = espacios;
     }
+
+    public Pisos(LinkedList<Espacios> espacios, int numero_piso) {
+        this.espacios = espacios;
+        this.numero_piso = numero_piso;
+    }
+
+    public int getNumero_piso() {
+        return numero_piso;
+    }
+
+    public void setNumero_piso(int numero_piso) {
+        this.numero_piso = numero_piso;
+    }
+    
 
     public LinkedList<Espacios> getEspacios() {
         return espacios;

@@ -3,27 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
-
-import model.Edificio;
+package model;
 
 /**
  *
  * @author USER
  */
-public class ControllerMain {
+public class Simulacion {
     private Edificio edificio;
-
-    public ControllerMain(Edificio edificio) {
+    private MetodoLumenes algoritmo;
+    public Simulacion(Edificio edificio) {
         this.edificio = edificio;
-    }
-    public ControllerMain(){
-    
+        this.algoritmo = new MetodoLumenes();
     }
     
-    
-    public void runSimulation(Edificio edificio)
+    public void CalcularHabitabilidad()
     {
-        //Implemen
+        for (Pisos object : edificio.getPisos()) {
+            
+        }
+    
     }
+    
 }
