@@ -12,6 +12,7 @@ package model;
 public class Simulacion {
     private Edificio edificio;
     private MetodoLumenes algoritmo;
+    
     public Simulacion(Edificio edificio) {
         this.edificio = edificio;
         this.algoritmo = new MetodoLumenes();
@@ -19,8 +20,11 @@ public class Simulacion {
     
     public void CalcularHabitabilidad()
     {
-        for (Pisos object : edificio.getPisos()) {
-            
+        for (Pisos piso_n : edificio.getPisos()) {
+            for (Espacios espacio : piso_n.getEspacios()) {
+                algoritmo.setEspacio(espacio);
+                algoritmo.procesarEspacio();
+            }
         }
     
     }

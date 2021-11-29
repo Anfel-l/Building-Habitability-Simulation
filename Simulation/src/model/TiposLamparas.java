@@ -10,7 +10,35 @@ package model;
  * @author USER
  */
 public class TiposLamparas {
-    private static float INCANDESCENTES;
+    
+
+    //Esta clase permite conocer el tipo de lampara que tiene ligado un espacio
+    private String tipo_lampara;
+    private float valor;
+    
+
+    public TiposLamparas(String tipo_lampara, float valor) {
+        this.tipo_lampara = tipo_lampara;
+        this.valor = valor;
+    }
+
+    public String getTipo_de_lamparas() {
+        return tipo_lampara;
+    }
+
+    public void setTipo_de_lamparas(String tipo_lamapara) {
+        this.tipo_lampara = tipo_lamapara;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+   /**private static float INCANDESCENTES;
     private static float HALOGENAS;
     private static float FLUORESCENTES;
     private static float LED;
@@ -21,5 +49,5 @@ public class TiposLamparas {
         HALOGENAS = 10;
         FLUORESCENTES = 70;
         LED =50; 
-    }
+    } */ 
 }

@@ -10,38 +10,35 @@ package model;
  * @author USER
  */
 public class TiposEspacios {
-    private static float APARTAMENTO;
-    private static float PASILLO;
-    private static float RECEPCION;
+    
+    //Esta clase permite conocer el tipo de espacio que tiene ligado un espacio
+    private String tipo_espacio;
+    private float valor;
+    /**
+     * 
+     * @param tipo_espacio nombre espacio
+     * @param valor se refiere al nivel de iluminancia que requiere ese tipo de espacio en base a la actividad
+     */
+    public TiposEspacios(String tipo_espacio, float valor) {
+        this.tipo_espacio = tipo_espacio;
+        this.valor = valor;
+    }
+    
+    public String getTipo_espacio() {
+        return tipo_espacio;
+    }
+
+    public void setTipo_espacio(String tipo_espacio) {
+        this.tipo_espacio = tipo_espacio;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
     
     
-    public void cargarEspacios()
-    {
-        
-        
-    }
-
-    public static float getAPARTAMENTO() {
-        return APARTAMENTO;
-    }
-
-    public static void setAPARTAMENTO(float APARTAMENTO) {
-        TiposEspacios.APARTAMENTO = APARTAMENTO;
-    }
-
-    public static float getPASILLO() {
-        return PASILLO;
-    }
-
-    public static void setPASILLO(float PASILLO) {
-        TiposEspacios.PASILLO = PASILLO;
-    }
-
-    public static float getRECEPCION() {
-        return RECEPCION;
-    }
-
-    public static void setRECEPCION(float RECEPCION) {
-        TiposEspacios.RECEPCION = RECEPCION;
-    }
 }
