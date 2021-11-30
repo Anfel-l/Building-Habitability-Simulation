@@ -31,7 +31,7 @@ public class Pisos {
 
     @Override
     public String toString() {
-        return "Pisos{" + "espacios=" + espacios + ", numero_piso=" + numero_piso + '}';
+        return "\n\033[0;1mPiso #"+ numero_piso +"\nEspacios #:" + espacios  + "";
     }
     
     

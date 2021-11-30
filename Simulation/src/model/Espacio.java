@@ -87,7 +87,7 @@ public class Espacio {
 
     @Override
     public String toString() {
-        return "Espacio\n{" + "nivel_medio_iluminancia=" + nivel_medio_iluminancia + ", \nnivel_medio_iluminancia_esperado=" + nivel_medio_iluminancia_esperado + ", \nancho_de_espacio=" + ancho_de_espacio + ", \nlargo_de_espacio=" + largo_de_espacio + ", \naltura_de_espacio=" + altura_de_espacio + ", \naltura_de_trabajo=" + altura_de_trabajo + ", \nindice_local=" + indice_local + ", \ntipo_de_espacio=" + tipo_de_espacio + ", \ntipo_ambiente=" + tipo_ambiente + ", \ntipo_sistema_iluminacion=" + tipo_sistema_iluminacion + ", \ncantidad_de_lamparas=" + cantidad_de_lamparas + ", \ndesplazamiento_de_lamparas=" + desplazamiento_de_lamparas + ", \nhabitabilidad=" + habitabilidad + '}';
+        return "\n#Espacio" + "\nNivel medio iluminancia:" + nivel_medio_iluminancia + "\nNivel medio iluminancia esperado:" + nivel_medio_iluminancia_esperado + "\nAncho de espacio:" + ancho_de_espacio + "\nLargo de espacio:" + largo_de_espacio + ", \nAltura de espacio:" + altura_de_espacio + "\nAltura de trabajo:" + altura_de_trabajo + "\nIndice local:" + indice_local + "\nTipo de espacio:" + tipo_de_espacio + "\nTipo ambiente:" + tipo_ambiente + "\nTipo sistema iluminacion:" + tipo_sistema_iluminacion + "\nCantidad de lamparas:" + cantidad_de_lamparas + "\nDesplazamiento de lamparas:" + desplazamiento_de_lamparas + "\nHabitabilidad:" + habitabilidad + "/n";
     }
     
     

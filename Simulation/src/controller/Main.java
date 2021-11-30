@@ -49,6 +49,8 @@ public class Main {
         LinkedList<Pisos> pisos = simu.fabricar_falsos_pisos(2);
         System.out.println(pisos.isEmpty());
         
+        Edificio ed = simu.fabricar_falso_edificio(2, 2);
+        System.out.println(ed);
     }
     
 }

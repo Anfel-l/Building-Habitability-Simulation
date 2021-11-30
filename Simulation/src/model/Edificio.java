@@ -31,7 +31,7 @@ public class Edificio {
 
     @Override
     public String toString() {
-        return "Edificio{" + "pisos=" + pisos + '}';
+        return "Edificio \n" + "Pisos:\n" + pisos + "\n";
     }
     
     
