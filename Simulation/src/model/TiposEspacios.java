@@ -23,6 +23,12 @@ public class TiposEspacios {
         this.tipo_espacio = tipo_espacio;
         this.valor = valor;
     }
+    
+    // Empty constructor
+    public TiposEspacios()
+    {
+        
+    }
 
     @Override
     public String toString() {
