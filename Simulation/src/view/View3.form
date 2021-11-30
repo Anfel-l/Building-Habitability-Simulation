@@ -263,12 +263,14 @@
               <Color blue="84" green="83" red="6c" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Apartamento"/>
-                <StringItem index="1" value="Pasillo"/>
-                <StringItem index="2" value="Recepci&#xf3;n"/>
-                <StringItem index="3" value="Sala de conferencias"/>
-                <StringItem index="4" value="Sala de espera"/>
+              <StringArray count="7">
+                <StringItem index="0" value="SALA_DESCANSO"/>
+                <StringItem index="1" value="PASILLO"/>
+                <StringItem index="2" value="RECEPCION"/>
+                <StringItem index="3" value="SALA_CONFERENCIAS"/>
+                <StringItem index="4" value="SALA_ESPERA"/>
+                <StringItem index="5" value="HALL"/>
+                <StringItem index="6" value="SALONES"/>
               </StringArray>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>

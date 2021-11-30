@@ -6,6 +6,8 @@
 package view;
 
 import javax.swing.JOptionPane;
+import model.Espacio;
+import model.MetodoLumenes;
 
 /**
  *
@@ -127,7 +129,7 @@ public class View3 extends javax.swing.JFrame {
 
         combo1.setFont(new java.awt.Font("Fira Code", 0, 12)); // NOI18N
         combo1.setForeground(new java.awt.Color(108, 131, 132));
-        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apartamento", "Pasillo", "Recepción", "Sala de conferencias", "Sala de espera" }));
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SALA_DESCANSO", "PASILLO", "RECEPCION", "SALA_CONFERENCIAS", "SALA_ESPERA", "HALL", "SALONES" }));
         combo1.setToolTipText("");
         combo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -487,14 +489,60 @@ public class View3 extends javax.swing.JFrame {
                     campo6.getText().matches("[+-]?\\d*(\\.\\d+)?")
                    ) 
                     {
-                        int aux = this.getFloors();
-                        System.out.println(aux);
                         
-                        for (int i = 0; i < aux; i++) 
-                        {
-                            View3 auxv = new View3();
+                        
+                        
+                        int aux = this.getFloors();
+                        
+                        float ANCHO = Float.parseFloat(campo1.getText());
+                        float LARGO = Float.parseFloat(campo3.getText());
+                        float ALTO = Float.parseFloat(campo5.getText());
+                        float ALTURA_TRABAJO = Float.parseFloat(campo2.getText());
+                        
+                        int CANTIDAD_LAMPARAS = Integer.parseInt(campo4.getText());
+                        
+                        float DESPLAZAMIENTO_LAMPARAS = Float.parseFloat(campo6.getText());
+                        
+                        String aux_str = (String) combo1.getSelectedItem();
+                        String aux_str2 = (String) combo2.getSelectedItem();
+                        String aux_str3 = (String) combo3.getSelectedItem();
+                        String aux_str4 = (String) combo5.getSelectedItem();
+                        
+                        String aux_espacio="";
+                        String aux_ambiente="";
+                        String aux_iluminacion="";
+                        
+                        
+                        
+                        
                             
-                        }
+                        
+                        
+                        
+                        Espacio espacio = new Espacio(ANCHO, LARGO, ALTO, Espacio., ALTURA_TRABAJO, CANTIDAD_LAMPARAS, DESPLAZAMIENTO_LAMPARAS, Espacio.AMBIENTE_LIMPIO, Espacio.ILUMINACION_DIRECTA);
+                        MetodoLumenes algoritmo = new MetodoLumenes();
+                        algoritmo.setEspacio(espacio);
+        
+                        espacio.setHabitabilidad(algoritmo.procesarEspacio()); 
+        
+                        System.out.println("Espacio:" + espacio);
+                        
+                        
+                        
+                        
+                        
+                        
+//                        for (int i = 0; i < aux; i++) 
+//                        {
+//                            
+//                            
+//                            
+//                            JOptionPane.showMessageDialog(null, "Piso agregado");
+//                        }
+
+
+
+
                         
                         View4 view = new View4();
                 
@@ -542,10 +590,6 @@ public class View3 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campo3ActionPerformed
 
-    private void campo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo4ActionPerformed
-
     private void campo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campo1ActionPerformed
@@ -557,6 +601,10 @@ public class View3 extends javax.swing.JFrame {
     private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combo1ActionPerformed
+
+    private void campo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo4ActionPerformed
 
     /**
      * @param args the command line arguments
