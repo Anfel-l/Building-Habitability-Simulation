@@ -68,6 +68,7 @@ public class MetodoLumenes {
         float Em = this.nivelIluminanciaMedio();
         
         
+        
     }
     
     public float obtenerFilaLuminarias(double NL, float ANCHO, float LARGO)
