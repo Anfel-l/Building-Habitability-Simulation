@@ -41,7 +41,10 @@ public class Simulacion {
     public LinkedList<Espacio> fabricar_falsos_espacios(int numero_espacios) {
         LinkedList<Espacio> espacios = new LinkedList<>();
         for (int i = 0; i < numero_espacios; i++) {
+            //float desplaza = falso_desplazamiento_lamparas();
+            //System.out.println("Desplazamiento generado: "+desplaza);
             Espacio espacio = new Espacio(falso_ancho(), falso_largo(), falso_altura(), falso_tipo_espacio(), falso_altura_trabajo(), falso_cantidad_lamparas(), falso_desplazamiento_lamparas(), falso_ambiente(), falso_sistema_iluminacion());
+            
             espacios.add(espacio);
         }
 
@@ -54,7 +57,7 @@ public class Simulacion {
     }
     public double randomNumberDecimal(int intervalo_minimo, int intervalo_maximo) {
         int rango = intervalo_maximo - intervalo_minimo;
-        return(Math.random() * rango) + intervalo_minimo;
+        return (Math.random() * rango) + intervalo_minimo;
     }
 
     public float falso_ancho() {
@@ -148,7 +151,7 @@ public class Simulacion {
     }
     
     public float falso_desplazamiento_lamparas() {
-        return (float) randomNumberInteger(0, 1);
+        return (float) randomNumberDecimal(0, 1);
     }
 
     public Edificio getEdificio() {

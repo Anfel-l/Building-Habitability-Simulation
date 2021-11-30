@@ -41,12 +41,14 @@ public class Main {
         System.out.println("Espacio:" + espacio);
         */
         Simulacion simu = new Simulacion();
-        LinkedList<Espacio> espacios = simu.fabricar_falsos_espacios(3);
+        LinkedList<Espacio> espacios = simu.fabricar_falsos_espacios(10);
         System.out.println(simu.falso_cantidad_lamparas());
         
-        while (true) {            
-            System.out.println(simu.randomNumberInteger(1, 2));
+        for (Iterator<Espacio> iterator = espacios.iterator(); iterator.hasNext();) {
+            Espacio espacio = iterator.next();
+            System.out.println(espacio);
         }
+        
     }
     
 }
