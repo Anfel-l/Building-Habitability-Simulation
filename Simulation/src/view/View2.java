@@ -5,6 +5,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author felipe
@@ -14,9 +16,25 @@ public class View2 extends javax.swing.JFrame {
     /**
      * Creates new form View
      */
+    
+    
+    
+    
+    
+    
     public View2() {
+        setResizable(false);
         initComponents();
     }
+
+    
+    
+
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +62,6 @@ public class View2 extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(254, 254, 254));
         jTextField1.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(108, 131, 132));
-        jTextField1.setText("Type here..");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -106,11 +123,39 @@ public class View2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+        
+        //Número de pisos 
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
+        if(evt.getSource() == jButton3)
+        {
+            if (jTextField1.getText().equals("")) 
+            {
+                JOptionPane.showMessageDialog(null, "Por favor llena los campos pertinentes", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                if (jTextField1.getText().matches("[+-]?\\d*(\\.\\d+)?")) 
+                    {
+                        View3 view = new View3();
+                        
+                        view.setFloors(Integer.parseInt(jTextField1.getText()));
+                
+                        view.setVisible(true);
+                        this.setVisible(false);
+                    }
+                    
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Error", "Error!", JOptionPane.ERROR_MESSAGE);
+                        
+                    }
+            }
+        }    
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -15,6 +15,7 @@ public class View4 extends javax.swing.JFrame {
      * Creates new form View4
      */
     public View4() {
+        setResizable(false);
         initComponents();
     }
 
