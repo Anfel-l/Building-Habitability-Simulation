@@ -133,7 +133,7 @@ public class MetodoLumenes {
         
         double Cu = MetodoLumenes.matriz_coeficiente_utilizacion[MetodoLumenes.matriz_coeficiente_utilizacion.length-1];
         for (int i = 0; i < MetodoLumenes.matriz_indice_local.length; i++) {
-            System.out.println("Comparacion:"+this.espacio.obtenerIndiceLocal()+":"+MetodoLumenes.matriz_indice_local[i]);
+            //System.out.println("Comparacion:"+this.espacio.obtenerIndiceLocal()+":"+MetodoLumenes.matriz_indice_local[i]);
             if ( this.espacio.obtenerIndiceLocal() <= MetodoLumenes.matriz_indice_local[i]) {
                
                 Cu = MetodoLumenes.matriz_coeficiente_utilizacion[i];

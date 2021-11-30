@@ -35,7 +35,7 @@ public class Simulacion {
         for (Pisos piso_n : edificio.getPisos()) {
             for (Espacio espacio : piso_n.getEspacios()) {
                 algoritmo.setEspacio(espacio);
-                algoritmo.procesarEspacio();
+                espacio.setHabitabilidad(algoritmo.procesarEspacio());
             }
         }
 

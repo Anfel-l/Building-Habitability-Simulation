@@ -42,6 +42,8 @@ public class Main {
 
         System.out.println("Espacio:" + espacio);
         */
+        
+        /*
         Simulacion simu = new Simulacion();
         LinkedList<Espacio> espacios = simu.fabricar_falsos_espacios(10);
         System.out.println(simu.falso_cantidad_lamparas());
@@ -51,6 +53,10 @@ public class Main {
         
         Edificio ed = simu.fabricar_falso_edificio(2, 2);
         System.out.println(ed);
-    }
+        */
+        
+        ControllerMain app = new ControllerMain();
+        app.runApp();
+}
     
 }
