@@ -100,5 +100,125 @@ class Espacios {
     {
         return this.tipo_ambiente.getValor();
     }
+
+    
+    
+    
+    
+    public boolean isEs_habitable() {
+        return es_habitable;
+    }
+
+    public void setEs_habitable(boolean es_habitable) {
+        this.es_habitable = es_habitable;
+    }
+
+    public float getNivel_medio_iluminancia() {
+        return nivel_medio_iluminancia;
+    }
+
+    public void setNivel_medio_iluminancia(float nivel_medio_iluminancia) {
+        this.nivel_medio_iluminancia = nivel_medio_iluminancia;
+    }
+
+    public float getNivel_medio_iluminancia_esperado() {
+        return nivel_medio_iluminancia_esperado;
+    }
+
+    public void setNivel_medio_iluminancia_esperado(float nivel_medio_iluminancia_esperado) {
+        this.nivel_medio_iluminancia_esperado = nivel_medio_iluminancia_esperado;
+    }
+
+    public float getAncho_de_espacio() {
+        return ancho_de_espacio;
+    }
+
+    public void setAncho_de_espacio(float ancho_de_espacio) {
+        this.ancho_de_espacio = ancho_de_espacio;
+    }
+
+    public float getLargo_de_espacio() {
+        return largo_de_espacio;
+    }
+
+    public void setLargo_de_espacio(float largo_de_espacio) {
+        this.largo_de_espacio = largo_de_espacio;
+    }
+
+    public float getAltura_de_espacio() {
+        return altura_de_espacio;
+    }
+
+    public void setAltura_de_espacio(float altura_de_espacio) {
+        this.altura_de_espacio = altura_de_espacio;
+    }
+
+    public float getAltura_de_trabajo() {
+        return altura_de_trabajo;
+    }
+
+    public void setAltura_de_trabajo(float altura_de_trabajo) {
+        this.altura_de_trabajo = altura_de_trabajo;
+    }
+
+    public float getIndice_local() {
+        return indice_local;
+    }
+
+    public void setIndice_local(float indice_local) {
+        this.indice_local = indice_local;
+    }
+
+    public TiposEspacios getTipo_de_espacio() {
+        return tipo_de_espacio;
+    }
+
+    public void setTipo_de_espacio(TiposEspacios tipo_de_espacio) {
+        this.tipo_de_espacio = tipo_de_espacio;
+    }
+
+    public TipoAmbiente getTipo_ambiente() {
+        return tipo_ambiente;
+    }
+
+    public void setTipo_ambiente(TipoAmbiente tipo_ambiente) {
+        this.tipo_ambiente = tipo_ambiente;
+    }
+
+    public TipoSistemaIluminacion getTipo_sistema_iluminacion() {
+        return tipo_sistema_iluminacion;
+    }
+
+    public void setTipo_sistema_iluminacion(TipoSistemaIluminacion tipo_sistema_iluminacion) {
+        this.tipo_sistema_iluminacion = tipo_sistema_iluminacion;
+    }
+
+    public int getCantidad_de_lamparas() {
+        return cantidad_de_lamparas;
+    }
+
+    public void setCantidad_de_lamparas(int cantidad_de_lamparas) {
+        this.cantidad_de_lamparas = cantidad_de_lamparas;
+    }
+
+    public String getTipo_de_lamparas() {
+        return tipo_de_lamparas;
+    }
+
+    public void setTipo_de_lamparas(String tipo_de_lamparas) {
+        this.tipo_de_lamparas = tipo_de_lamparas;
+    }
+
+    public float getDesplazamiento_de_lamparas() {
+        return desplazamiento_de_lamparas;
+    }
+
+    public void setDesplazamiento_de_lamparas(float desplazamiento_de_lamparas) {
+        this.desplazamiento_de_lamparas = desplazamiento_de_lamparas;
+    }
+    
+    
+    
+    
     
 }
