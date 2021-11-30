@@ -16,9 +16,14 @@ public class MetodoLumenes {
     public static float coeficiente_techo_reflexion = (float) 0.5;
     public static float coeficiente_paredes_reflexion = (float) 0.3;
     public static float coeficiente_suelo_reflexion = (float) 0.1;
- 
+    
+    public static float matriz_indice_local[]= new float[]{((float) 0.5)}; 
+    public static float matriz_correcciones[]= new float[]{((float) 0.5)}; 
+    public static float matriz_coeficiente_reflexion[]= new float[]{((float) 0.5)}; 
+    
     public MetodoLumenes() 
     {
+        
 
     }
 

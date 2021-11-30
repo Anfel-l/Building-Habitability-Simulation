@@ -22,6 +22,9 @@ class Espacios {
     public static final TiposEspacios SALA_CONFERENCIAS = new TiposEspacios("Sala_conferencias", (float)500);
     public static final TiposEspacios SALA_ESPERA = new TiposEspacios("Sala_espera", 200);
     
+    //Tipo de sistema de iluminacion
+    public static final TipoSistemaIluminacion ILUMINACION_DIRECTA = new TipoSistemaIluminacion("Iluminacion directa", 1);
+    public static final TipoSistemaIluminacion ILUMINACION_INDIRECTA = new TipoSistemaIluminacion("Iluminacion indirecta", 0);
     
     //Tipos de ambiente para un espacio
     public static final TipoAmbiente AMBIENTE_LIMPIO = new TipoAmbiente("Limpio",(float)0.8);
@@ -61,7 +64,7 @@ class Espacios {
     private float desplazamiento_de_lamparas;
 
 
-    public Espacios(float ancho_de_espacio, float largo_de_espacio, float altura_de_espacio, TiposEspacios tipo_de_espacio, float altura_de_trabajo, int cantidad_de_lamparas, String tipo_de_lamparas, float desplazamiento_de_lamparas, TipoAmbiente tipo_ambiente) {
+    public Espacios(float ancho_de_espacio, float largo_de_espacio, float altura_de_espacio, TiposEspacios tipo_de_espacio, float altura_de_trabajo, int cantidad_de_lamparas, String tipo_de_lamparas, float desplazamiento_de_lamparas, TipoAmbiente tipo_ambiente, TipoSistemaIluminacion tipo_sistema_iluminacion) {
         this.ancho_de_espacio = ancho_de_espacio;
         this.largo_de_espacio = largo_de_espacio;
         this.altura_de_espacio = altura_de_espacio;
@@ -75,6 +78,7 @@ class Espacios {
         this.nivel_medio_iluminancia = 0;
         this.nivel_medio_iluminancia_esperado = 0;
         this.tipo_ambiente = tipo_ambiente;
+        this.tipo_sistema_iluminacion = tipo_sistema_iluminacion;
     }
     
     public float obtenerSuperficie()
@@ -94,10 +98,7 @@ class Espacios {
     
     public float obtenerIndiceLocal()
     {
-        return ;
+        return this.tipo_ambiente.getValor();
     }
-    
-    
-    
     
 }
