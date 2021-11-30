@@ -12,7 +12,7 @@ import model.Edificio;
  * @author USER
  */
 public class ControllerMain {
-    private Edificio edificio;
+    public static Edificio edificio;
 
     public ControllerMain(Edificio edificio) {
         this.edificio = edificio;
@@ -21,9 +21,18 @@ public class ControllerMain {
     
     }
     
+    public void runApp(){
+        //Implementar metodo para obtener si el programa inicia una simulacion o una demostracion
+    }
     
-    public void runSimulation(Edificio edificio)
+    public void runSimulation()
     {
         //Implemen
+    }
+    
+    public void runDemostracion()
+    {
+        //Implementar metodo para correr la demostracion
+        
     }
 }

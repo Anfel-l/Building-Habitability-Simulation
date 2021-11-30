@@ -19,8 +19,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        float ANCHO = 10;
-        float LARGO = 10;
+        float ANCHO = 5;
+        float LARGO = 4;
         float ALTO = 4;
         float ALTURA_TRABAJO = (float)0.5;
         
@@ -28,7 +28,7 @@ public class Main {
         
         float DESPLAZAMIENTO_LAMPARAS = (float)1;
         
-        Espacio espacio = new Espacio(ANCHO, LARGO, ALTO, Espacio.SALA_CONFERENCIAS, ALTURA_TRABAJO, CANTIDAD_LAMPARAS, DESPLAZAMIENTO_LAMPARAS, Espacio.AMBIENTE_LIMPIO, Espacio.ILUMINACION_INDIRECTA);
+        Espacio espacio = new Espacio(ANCHO, LARGO, ALTO, Espacio.SALA_ESPERA, ALTURA_TRABAJO, CANTIDAD_LAMPARAS, DESPLAZAMIENTO_LAMPARAS, Espacio.AMBIENTE_LIMPIO, Espacio.ILUMINACION_DIRECTA);
         MetodoLumenes algoritmo = new MetodoLumenes();
         algoritmo.setEspacio(espacio);
         
