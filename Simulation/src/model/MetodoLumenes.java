@@ -11,7 +11,7 @@ package model;
  */
 public class MetodoLumenes {
 
-    private Espacios espacio;
+    private Espacio espacio;
     
     public static float coeficiente_techo_reflexion = (float) 0.5;
     public static float coeficiente_paredes_reflexion = (float) 0.3;
@@ -34,16 +34,16 @@ public class MetodoLumenes {
         5.00
     }; 
     public static double[] matriz_coeficiente_utilizacion = new double[]{
-        0.60,
-        0.80,
-        1.00,
-        1.25,
-        1.50,
-        2.00,
-        2.50,
-        3.00,
-        4.00,
-        5.00
+        0.18,
+        0.23,
+        0.28,
+        0.32,
+        0.35,
+        0.40,
+        0.43,
+        0.46,
+        0.49,
+        0.51
     };
     
     public MetodoLumenes() 
@@ -56,7 +56,7 @@ public class MetodoLumenes {
     {
         float flujo_luminoso = 0;
         flujo_luminoso = this.obtenerFlujoLuminoso();
-        double NL = 1;
+        int NL = 1;
         
         NL = this.obtenerNumeroLuminarias();
         float LARGO = this.getEspacio().getLargo_de_espacio();
@@ -66,8 +66,15 @@ public class MetodoLumenes {
         int Nlargo = (int)this.obtenerColumnaLuminarias(Nancho,ANCHO,LARGO);
         
         float Em = this.nivelIluminanciaMedio();
+        float Cu = (float)this.calcular_coeficiente_utilizacion();
+        float Cm = (float)this.getEspacio().obtenerCoeficienteMantenimiento();
+        int lamparas = this.getEspacio().getCantidad_de_lamparas();
+        float EmIdeal = this.getEspacio().obtenerIluminacionIdeal();
         
-        Habitabilidad habitabilidad_espacio = new  Habitabilidad(Em, this.espacio.getNivel_medio_iluminancia_esperado(), nLamparas, this.getEspacio().getCantidad_de_lamparas());
+        float k = this.getEspacio().getIndice_local();
+        
+        Habitabilidad habitabilidad_espacio = new  Habitabilidad(Em, EmIdeal, NL, lamparas, Cu, Cm,k, flujo_luminoso);
+        
         return habitabilidad_espacio;
     }
     
@@ -88,7 +95,7 @@ public class MetodoLumenes {
     {
         float Em = 0;
         
-        Espacios espacio_actual = this.getEspacio();
+        Espacio espacio_actual = this.getEspacio();
         
         float Cm = espacio_actual.obtenerCoeficienteMantenimiento(); //Cm = Coeficiente de mantenimiento
         
@@ -123,10 +130,12 @@ public class MetodoLumenes {
     
     public double calcular_coeficiente_utilizacion()
     {
-        double Cu = 1;
+        
+        double Cu = MetodoLumenes.matriz_coeficiente_utilizacion[MetodoLumenes.matriz_coeficiente_utilizacion.length-1];
         for (int i = 0; i < MetodoLumenes.matriz_indice_local.length; i++) {
-            if ( this.espacio.getIndice_local() <= MetodoLumenes.matriz_coeficiente_utilizacion[i]) {
-                
+            System.out.println("Comparacion:"+this.espacio.obtenerIndiceLocal()+":"+MetodoLumenes.matriz_indice_local[i]);
+            if ( this.espacio.obtenerIndiceLocal() <= MetodoLumenes.matriz_indice_local[i]) {
+               
                 Cu = MetodoLumenes.matriz_coeficiente_utilizacion[i];
                 break;
             }
@@ -149,11 +158,11 @@ public class MetodoLumenes {
         return Math.round(NL);
     }
 
-    public Espacios getEspacio() {
+    public Espacio getEspacio() {
         return espacio;
     }
 
-    public void setEspacio(Espacios espacio) {
+    public void setEspacio(Espacio espacio) {
         this.espacio = espacio;
     }
 }

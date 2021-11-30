@@ -21,7 +21,7 @@ public class Simulacion {
     public void CalcularHabitabilidad()
     {
         for (Pisos piso_n : edificio.getPisos()) {
-            for (Espacios espacio : piso_n.getEspacios()) {
+            for (Espacio espacio : piso_n.getEspacios()) {
                 algoritmo.setEspacio(espacio);
                 algoritmo.procesarEspacio();
             }

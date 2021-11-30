@@ -9,20 +9,22 @@ package model;
  *
  * @author USER
  */
-class Espacios {
+public class Espacio {
 
     /*
      Variables para el calculo del flujo luminoso y nivel de iluminacion medio
     */
 
     //Tipos de espacios para un espacio
-    public static final TiposEspacios APARTAMENTO = new TiposEspacios("Apartamento", (float)0);
+    public static final TiposEspacios SALA_DESCANSO = new TiposEspacios("Sala descanso", (float)100);
     public static final TiposEspacios PASILLO = new TiposEspacios("Pasillos", (float)100);
     public static final TiposEspacios RECEPCION = new TiposEspacios("Recepcion", (float)300);
     public static final TiposEspacios SALA_CONFERENCIAS = new TiposEspacios("Sala_conferencias", (float)500);
-    public static final TiposEspacios SALA_ESPERA = new TiposEspacios("Sala_espera", 200);
+    public static final TiposEspacios SALA_ESPERA = new TiposEspacios("Sala espera", 200);    
+    public static final TiposEspacios HALL = new TiposEspacios("Hall", 100);    
+    public static final TiposEspacios SALONES = new TiposEspacios("Salones", 200);    
     
-    //Tipo de sistema de iluminacion
+//Tipo de sistema de iluminacion
     public static final TipoSistemaIluminacion ILUMINACION_DIRECTA = new TipoSistemaIluminacion("Iluminacion directa", 1);
     public static final TipoSistemaIluminacion ILUMINACION_INDIRECTA = new TipoSistemaIluminacion("Iluminacion indirecta", 0);
     
@@ -60,7 +62,6 @@ class Espacios {
     //Varibles para el calculo del numero de luminarias
 
     private int cantidad_de_lamparas;
-    private String tipo_de_lamparas;
     private float desplazamiento_de_lamparas;
     
     //Habitabilidad del espacio
@@ -68,14 +69,13 @@ class Espacios {
     Habitabilidad habitabilidad;
 
 
-    public Espacios(float ancho_de_espacio, float largo_de_espacio, float altura_de_espacio, TiposEspacios tipo_de_espacio, float altura_de_trabajo, int cantidad_de_lamparas, String tipo_de_lamparas, float desplazamiento_de_lamparas, TipoAmbiente tipo_ambiente, TipoSistemaIluminacion tipo_sistema_iluminacion) {
+    public Espacio(float ancho_de_espacio, float largo_de_espacio, float altura_de_espacio, TiposEspacios tipo_de_espacio, float altura_de_trabajo, int cantidad_de_lamparas, float desplazamiento_de_lamparas, TipoAmbiente tipo_ambiente, TipoSistemaIluminacion tipo_sistema_iluminacion) {
         this.ancho_de_espacio = ancho_de_espacio;
         this.largo_de_espacio = largo_de_espacio;
         this.altura_de_espacio = altura_de_espacio;
         this.tipo_de_espacio = tipo_de_espacio;
         this.altura_de_trabajo = altura_de_trabajo;
         this.cantidad_de_lamparas = cantidad_de_lamparas;
-        this.tipo_de_lamparas = tipo_de_lamparas;
         this.desplazamiento_de_lamparas = desplazamiento_de_lamparas;
         this.nivel_medio_iluminancia = 0;
         this.nivel_medio_iluminancia_esperado = 0;
@@ -85,12 +85,20 @@ class Espacios {
         this.habitabilidad = null;
     }
 
+    @Override
+    public String toString() {
+        return "Espacio\n{" + "nivel_medio_iluminancia=" + nivel_medio_iluminancia + ", \nnivel_medio_iluminancia_esperado=" + nivel_medio_iluminancia_esperado + ", \nancho_de_espacio=" + ancho_de_espacio + ", \nlargo_de_espacio=" + largo_de_espacio + ", \naltura_de_espacio=" + altura_de_espacio + ", \naltura_de_trabajo=" + altura_de_trabajo + ", \nindice_local=" + indice_local + ", \ntipo_de_espacio=" + tipo_de_espacio + ", \ntipo_ambiente=" + tipo_ambiente + ", \ntipo_sistema_iluminacion=" + tipo_sistema_iluminacion + ", \ncantidad_de_lamparas=" + cantidad_de_lamparas + ", \ndesplazamiento_de_lamparas=" + desplazamiento_de_lamparas + ", \nhabitabilidad=" + habitabilidad + '}';
+    }
+    
+    
+
     public Habitabilidad getHabitabilidad() {
         return habitabilidad;
     }
 
     public void setHabitabilidad(Habitabilidad habitabilidad) {
         this.habitabilidad = habitabilidad;
+        this.habitabilidad.setHabitable();
     }
     
     public float obtenerSuperficie()
@@ -110,7 +118,8 @@ class Espacios {
     
     public float obtenerIndiceLocal()
     {
-        return this.tipo_ambiente.getValor();
+        this.setIndice_local(this.tipo_sistema_iluminacion.obtenerIndiceLocal(ancho_de_espacio, largo_de_espacio, altura_de_espacio, altura_de_trabajo));
+        return this.getIndice_local();
     }
 
     public float getNivel_medio_iluminancia() {
@@ -200,15 +209,7 @@ class Espacios {
     public void setCantidad_de_lamparas(int cantidad_de_lamparas) {
         this.cantidad_de_lamparas = cantidad_de_lamparas;
     }
-
-    public String getTipo_de_lamparas() {
-        return tipo_de_lamparas;
-    }
-
-    public void setTipo_de_lamparas(String tipo_de_lamparas) {
-        this.tipo_de_lamparas = tipo_de_lamparas;
-    }
-
+    
     public float getDesplazamiento_de_lamparas() {
         return desplazamiento_de_lamparas;
     }
