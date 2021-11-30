@@ -52,7 +52,7 @@ public class MetodoLumenes {
 
     }
 
-    public void procesarEspacio()
+    public Habitabilidad procesarEspacio()
     {
         float flujo_luminoso = 0;
         flujo_luminoso = this.obtenerFlujoLuminoso();
@@ -67,8 +67,8 @@ public class MetodoLumenes {
         
         float Em = this.nivelIluminanciaMedio();
         
-        
-        
+        Habitabilidad habitabilidad_espacio = new  Habitabilidad(Em, this.espacio.getNivel_medio_iluminancia_esperado(), nLamparas, this.getEspacio().getCantidad_de_lamparas());
+        return habitabilidad_espacio;
     }
     
     public float obtenerFilaLuminarias(double NL, float ANCHO, float LARGO)

@@ -32,7 +32,7 @@ class Espacios {
 
     //Parametros para calcular medidas del espacio
     //enum TiposEspacios{APARTAMENTO,PASILLO,RECEPCION}
-    private boolean es_habitable;
+    
 
     private float nivel_medio_iluminancia; //Nivel de iluminancia del espacio
     private float nivel_medio_iluminancia_esperado; //Nivel de iluminancia esperado segun NORMAs
@@ -62,6 +62,10 @@ class Espacios {
     private int cantidad_de_lamparas;
     private String tipo_de_lamparas;
     private float desplazamiento_de_lamparas;
+    
+    //Habitabilidad del espacio
+    
+    Habitabilidad habitabilidad;
 
 
     public Espacios(float ancho_de_espacio, float largo_de_espacio, float altura_de_espacio, TiposEspacios tipo_de_espacio, float altura_de_trabajo, int cantidad_de_lamparas, String tipo_de_lamparas, float desplazamiento_de_lamparas, TipoAmbiente tipo_ambiente, TipoSistemaIluminacion tipo_sistema_iluminacion) {
@@ -73,12 +77,20 @@ class Espacios {
         this.cantidad_de_lamparas = cantidad_de_lamparas;
         this.tipo_de_lamparas = tipo_de_lamparas;
         this.desplazamiento_de_lamparas = desplazamiento_de_lamparas;
-
-        this.es_habitable = false;
         this.nivel_medio_iluminancia = 0;
         this.nivel_medio_iluminancia_esperado = 0;
         this.tipo_ambiente = tipo_ambiente;
         this.tipo_sistema_iluminacion = tipo_sistema_iluminacion;
+        
+        this.habitabilidad = null;
+    }
+
+    public Habitabilidad getHabitabilidad() {
+        return habitabilidad;
+    }
+
+    public void setHabitabilidad(Habitabilidad habitabilidad) {
+        this.habitabilidad = habitabilidad;
     }
     
     public float obtenerSuperficie()
@@ -99,18 +111,6 @@ class Espacios {
     public float obtenerIndiceLocal()
     {
         return this.tipo_ambiente.getValor();
-    }
-
-    
-    
-    
-    
-    public boolean isEs_habitable() {
-        return es_habitable;
-    }
-
-    public void setEs_habitable(boolean es_habitable) {
-        this.es_habitable = es_habitable;
     }
 
     public float getNivel_medio_iluminancia() {
