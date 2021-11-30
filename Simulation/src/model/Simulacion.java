@@ -20,6 +20,13 @@ public class Simulacion {
         this.edificio = edificio;
         this.algoritmo = new MetodoLumenes();
     }
+    
+    public Simulacion() {
+        this.edificio = null;
+        this.algoritmo = new MetodoLumenes();
+    }
+    
+    
 
     public void CalcularHabitabilidad() {
         for (Pisos piso_n : edificio.getPisos()) {
@@ -34,37 +41,41 @@ public class Simulacion {
     public LinkedList<Espacio> fabricar_falsos_espacios(int numero_espacios) {
         LinkedList<Espacio> espacios = new LinkedList<>();
         for (int i = 0; i < numero_espacios; i++) {
-            //Espacio espacio = new Espacio(numero_espacios, numero_espacios, numero_espacios, tipo_de_espacio, numero_espacios, numero_espacios, numero_espacios, tipo_ambiente, tipo_sistema_iluminacion);
-
+            Espacio espacio = new Espacio(falso_ancho(), falso_largo(), falso_altura(), falso_tipo_espacio(), falso_altura_trabajo(), falso_cantidad_lamparas(), falso_desplazamiento_lamparas(), falso_ambiente(), falso_sistema_iluminacion());
+            espacios.add(espacio);
         }
 
         return espacios;
     }
 
-    public double randomNumber(int intervalo_minimo, int intervalo_maximo) {
-        int rango = intervalo_minimo - intervalo_minimo;
-        return (Math.random() * rango) + intervalo_minimo;
+    public double randomNumberInteger(int intervalo_minimo, int intervalo_maximo) {
+        int rango = intervalo_maximo - intervalo_minimo;
+        return Math.round((Math.random() * rango) + intervalo_minimo);
+    }
+    public double randomNumberDecimal(int intervalo_minimo, int intervalo_maximo) {
+        int rango = intervalo_maximo - intervalo_minimo;
+        return(Math.random() * rango) + intervalo_minimo;
     }
 
     public float falso_ancho() {
-        return (float) randomNumber(3, 10);
+        return (float) randomNumberInteger(3, 10);
     }
 
     public float falso_largo() {
-        return (float) randomNumber(3, 7);
+        return (float) randomNumberInteger(3, 7);
     }
 
     public float falso_altura() {
-        return (float) randomNumber(2, 4);
+        return (float) randomNumberInteger(2, 4);
     }
 
     public float falso_altura_trabajo() {
-        return (float) randomNumber(0, 1);
+        return (float) randomNumberDecimal(0, 1);
     }
 
     public TiposEspacios falso_tipo_espacio() {
         TiposEspacios tipo_espacio = null;
-        switch ((int) randomNumber(1, 7)) {
+        switch ((int) randomNumberInteger(1, 7)) {
             case 1:
                 tipo_espacio = Espacio.SALA_DESCANSO;
                 break;
@@ -97,7 +108,7 @@ public class Simulacion {
     public TipoSistemaIluminacion falso_sistema_iluminacion() {
         TipoSistemaIluminacion tipo_sistema_iluminacion = null;
 
-        switch ((int) randomNumber(1, 2)) {
+        switch ((int) randomNumberInteger(1, 2)) {
             case 1:
                 tipo_sistema_iluminacion = Espacio.ILUMINACION_DIRECTA;
                 break;
@@ -116,7 +127,7 @@ public class Simulacion {
     public TipoAmbiente falso_ambiente() {
         TipoAmbiente tipo_ambiente = null;
 
-        switch ((int) randomNumber(1, 2)) {
+        switch ((int) randomNumberInteger(1, 2)) {
             case 1:
                 tipo_ambiente = Espacio.AMBIENTE_LIMPIO;
                 break;
@@ -133,11 +144,19 @@ public class Simulacion {
     }
 
     public int falso_cantidad_lamparas() {
-        return (int) randomNumber(1, 10);
+        return (int) randomNumberInteger(1, 10);
     }
     
     public float falso_desplazamiento_lamparas() {
-        return (float) randomNumber(0, 1);
+        return (float) randomNumberInteger(0, 1);
     }
 
+    public Edificio getEdificio() {
+        return edificio;
+    }
+
+    public void setEdificio(Edificio edificio) {
+        this.edificio = edificio;
+    }
+    
 }

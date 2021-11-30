@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package controller;
+import java.util.Iterator;
+import java.util.LinkedList;
 import model.Espacio;
 import model.MetodoLumenes;
+import model.Simulacion;
 
 
 /**
@@ -19,6 +22,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        /*
         float ANCHO = 5;
         float LARGO = 4;
         float ALTO = 4;
@@ -35,6 +39,14 @@ public class Main {
         espacio.setHabitabilidad(algoritmo.procesarEspacio()); 
 
         System.out.println("Espacio:" + espacio);
+        */
+        Simulacion simu = new Simulacion();
+        LinkedList<Espacio> espacios = simu.fabricar_falsos_espacios(3);
+        System.out.println(simu.falso_cantidad_lamparas());
+        
+        while (true) {            
+            System.out.println(simu.randomNumberInteger(1, 2));
+        }
     }
     
 }
