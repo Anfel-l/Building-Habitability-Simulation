@@ -22,6 +22,13 @@ public class TiposLamparas {
         this.valor = valor;
     }
 
+    @Override
+    public String toString() {
+        return "TiposLamparas{" + "tipo_lampara=" + tipo_lampara + ", valor=" + valor + '}';
+    }
+    
+    
+
     public String getTipo_de_lamparas() {
         return tipo_lampara;
     }

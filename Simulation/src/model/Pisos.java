@@ -11,18 +11,30 @@ import java.util.LinkedList;
  *
  * @author USER
  */
-class Pisos {
-    private LinkedList<Espacios> espacios;
+public class Pisos {
+    private LinkedList<Espacio> espacios;
     private int numero_piso;
 
-    public Pisos(LinkedList<Espacios> espacios) {
+    public Pisos(LinkedList<Espacio> espacios) {
         this.espacios = espacios;
     }
 
-    public Pisos(LinkedList<Espacios> espacios, int numero_piso) {
+    public Pisos(LinkedList<Espacio> espacios, int numero_piso) {
         this.espacios = espacios;
         this.numero_piso = numero_piso;
     }
+
+    public Pisos(int numero_piso) {
+        this.numero_piso = numero_piso;
+        this.espacios = new LinkedList<>();
+    }
+
+    @Override
+    public String toString() {
+        return ColorConsole.texto_verde+"\nPiso #"+ numero_piso +ColorConsole.texto_default+"\nEspacios #:" + espacios  + "";
+    }
+    
+    
 
     public int getNumero_piso() {
         return numero_piso;
@@ -33,11 +45,11 @@ class Pisos {
     }
     
 
-    public LinkedList<Espacios> getEspacios() {
+    public LinkedList<Espacio> getEspacios() {
         return espacios;
     }
 
-    public void setEspacios(LinkedList<Espacios> espacios) {
+    public void setEspacios(LinkedList<Espacio> espacios) {
         this.espacios = espacios;
     }
     

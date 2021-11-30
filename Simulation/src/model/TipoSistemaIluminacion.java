@@ -18,8 +18,12 @@ public class TipoSistemaIluminacion {
         this.nombre = nombre;
         this.value = value;
     }
-    
 
+    @Override
+    public String toString() {
+        return "TipoSistemaIluminacion{" + "nombre=" + nombre + ", value=" + value + '}';
+    }
+ 
     public float obtenerIndiceLocal(float ancho, float largo, float altura, float plano_trabajo) {
         float indice_local = 0;
         switch (this.value) {
@@ -41,14 +45,14 @@ public class TipoSistemaIluminacion {
     public float iluminacionDirecta(float ancho, float largo, float altura) {
         float indice_local_iluminacion_directa = 0;
         float ancho_largo = (ancho * largo);
-        indice_local_iluminacion_directa = ancho_largo / (altura * (ancho_largo));
+        indice_local_iluminacion_directa = ancho_largo / (altura * (ancho+largo));
         return indice_local_iluminacion_directa;
     }
 
     public float iluminacionIndirecta(float ancho, float largo, float altura, float plano_trabajos) {
         float indice_local_iluminacion_indirecta = 0;
 
-        indice_local_iluminacion_indirecta = (3 * ancho * largo) / (2 * (altura + plano_trabajos) * (ancho * largo));
+        indice_local_iluminacion_indirecta = (3 * ancho * largo) / (2 * (altura + plano_trabajos) * (ancho + largo));
 
         return indice_local_iluminacion_indirecta;
     }

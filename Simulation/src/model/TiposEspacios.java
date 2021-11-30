@@ -23,6 +23,12 @@ public class TiposEspacios {
         this.tipo_espacio = tipo_espacio;
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "TiposEspacios{" + "tipo_espacio=" + tipo_espacio + ", valor=" + valor + '}';
+    }
+    
     
     public String getTipo_espacio() {
         return tipo_espacio;
