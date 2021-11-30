@@ -12,10 +12,13 @@ import java.util.LinkedList;
  * @author USER
  */
 public class Edificio {
-    private LinkedList<Pisos> pisos = new LinkedList<Pisos>();
+    private LinkedList<Pisos> pisos;
 
     public Edificio(LinkedList<Pisos> pisos) {
         this.pisos = pisos;
+    }
+    public Edificio() {
+        this.pisos = new LinkedList<>();
     }
 
     public LinkedList<Pisos> getPisos() {
@@ -24,6 +27,11 @@ public class Edificio {
 
     public void setPisos(LinkedList<Pisos> pisos) {
         this.pisos = pisos;
+    }
+
+    @Override
+    public String toString() {
+        return "Edificio{" + "pisos=" + pisos + '}';
     }
     
     

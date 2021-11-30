@@ -5,7 +5,10 @@
  */
 package model;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Set;
 
 /**
  *
@@ -49,6 +52,31 @@ public class Simulacion {
         }
 
         return espacios;
+    }
+    
+    public LinkedList<Pisos> fabricar_falsos_pisos(int numero_pisos)
+    {
+        LinkedList<Pisos> pisos = new LinkedList<>();
+        for (int i = 1; i <= numero_pisos; i++) {
+            Pisos piso = new Pisos(i);
+            pisos.add(piso);
+        }
+        return pisos;
+    }
+    
+    public Edificio fabricar_falso_edificio(int numero_pisos, int numero_espacios_por_piso)
+    {
+        LinkedList<Pisos> pisos = fabricar_falsos_pisos(numero_pisos);
+        
+        for (Iterator<Pisos> iterator = pisos.iterator(); iterator.hasNext();) {
+            Pisos piso = iterator.next();
+            LinkedList<Espacio> espacios = fabricar_falsos_espacios(numero_espacios_por_piso);
+            piso.setEspacios(espacios);
+        }
+        
+        Edificio edificio_falso = new Edificio(pisos);
+        
+        return edificio_falso;
     }
 
     public double randomNumberInteger(int intervalo_minimo, int intervalo_maximo) {

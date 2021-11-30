@@ -6,8 +6,10 @@
 package controller;
 import java.util.Iterator;
 import java.util.LinkedList;
+import model.Edificio;
 import model.Espacio;
 import model.MetodoLumenes;
+import model.Pisos;
 import model.Simulacion;
 
 
@@ -44,10 +46,8 @@ public class Main {
         LinkedList<Espacio> espacios = simu.fabricar_falsos_espacios(10);
         System.out.println(simu.falso_cantidad_lamparas());
         
-        for (Iterator<Espacio> iterator = espacios.iterator(); iterator.hasNext();) {
-            Espacio espacio = iterator.next();
-            System.out.println(espacio);
-        }
+        LinkedList<Pisos> pisos = simu.fabricar_falsos_pisos(2);
+        System.out.println(pisos.isEmpty());
         
     }
     

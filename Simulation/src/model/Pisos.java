@@ -24,6 +24,18 @@ public class Pisos {
         this.numero_piso = numero_piso;
     }
 
+    public Pisos(int numero_piso) {
+        this.numero_piso = numero_piso;
+        this.espacios = new LinkedList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "Pisos{" + "espacios=" + espacios + ", numero_piso=" + numero_piso + '}';
+    }
+    
+    
+
     public int getNumero_piso() {
         return numero_piso;
     }
