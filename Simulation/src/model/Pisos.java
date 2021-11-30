@@ -31,7 +31,7 @@ public class Pisos {
 
     @Override
     public String toString() {
-        return "\n\033[0;1mPiso #"+ numero_piso +"\nEspacios #:" + espacios  + "";
+        return ColorConsole.texto_verde+"\nPiso #"+ numero_piso +ColorConsole.texto_default+"\nEspacios #:" + espacios  + "";
     }
     
     

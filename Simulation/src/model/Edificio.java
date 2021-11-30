@@ -31,7 +31,7 @@ public class Edificio {
 
     @Override
     public String toString() {
-        return "Edificio \n" + "Pisos:\n" + pisos + "\n";
+        return ColorConsole.texto_rojo+"Edificio \n"+ColorConsole.texto_default+ "Pisos:\n" + pisos + "\n";
     }
     
     
