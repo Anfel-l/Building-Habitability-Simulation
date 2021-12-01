@@ -566,23 +566,16 @@ public class View3 extends javax.swing.JFrame {
                         
                         String output = "Espacio:" + espacio;
                         
-                        System.out.println(output);
-                        
-                        
                         
 //                      for (int i = 0; i < aux; i++) 
 //                      {
 //                        JOptionPane.showMessageDialog(null, "Piso agregado");
 //                      }
 
-
-
-
-                        
                         View4 view = new View4();
-                        view.setOutput(output);
+                        view.establecerTexto(output);
                         
-                        System.out.println(view.getOutput());
+                        
                         view.setVisible(true);
                         this.setVisible(false);
                     }
