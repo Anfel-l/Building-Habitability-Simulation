@@ -582,6 +582,7 @@ public class View3 extends javax.swing.JFrame {
                         View4 view = new View4();
                         view.setOutput(output);
                         
+                        System.out.println(view.getOutput());
                         view.setVisible(true);
                         this.setVisible(false);
                     }
