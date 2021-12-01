@@ -17,25 +17,12 @@ public class View2 extends javax.swing.JFrame {
      * Creates new form View
      */
     
-    
-    
-    
-    
-    
     public View2() {
         setResizable(false);
         setLocationRelativeTo(null);
         initComponents();
     }
 
-    
-    
-
-    
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -5,9 +5,13 @@
  */
 package view;
 
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import model.Edificio;
 import model.Espacio;
 import model.MetodoLumenes;
+import model.Pisos;
+import model.Simulacion;
 import model.TipoAmbiente;
 import model.TipoSistemaIluminacion;
 import model.TiposEspacios;
@@ -22,19 +26,14 @@ public class View3 extends javax.swing.JFrame {
     /**
      * Creates new form View3
      */
-    
-    
     public int floors;
-    
-    
-    public View3() 
-    {
+
+    public View3() {
         setResizable(false);
         setLocationRelativeTo(null);
         initComponents();
     }
-    
-    
+
     public int getFloors() {
         return floors;
     }
@@ -43,8 +42,16 @@ public class View3 extends javax.swing.JFrame {
         this.floors = floors;
     }
     
-    
-    
+    public void resetInputs()
+    {
+        campo1.setText("");
+        campo2.setText("");
+        campo3.setText("");
+        campo4.setText("");
+        campo5.setText("");
+        campo6.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,7 +106,7 @@ public class View3 extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(0, 255, 249));
         jButton3.setFont(new java.awt.Font("Fira Code", 1, 20)); // NOI18N
         jButton3.setForeground(new java.awt.Color(108, 131, 132));
-        jButton3.setText("Next Floor");
+        jButton3.setText("Finish");
         jButton3.setBorderPainted(false);
         jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -461,159 +468,124 @@ public class View3 extends javax.swing.JFrame {
     }//GEN-LAST:event_campo6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        if (evt.getSource() == jButton3) 
-        {
-            if (campo1.getText().equals("") || campo2.getText().equals("") || campo3.getText().equals("") || campo4.getText().equals("") || campo5.getText().equals("") || campo6.getText().equals("")) 
-            {
-                JOptionPane.showMessageDialog(null, "Por favor llena los campos pertinentes", "Error!", JOptionPane.ERROR_MESSAGE);
-            }
-            
-            else
-            {
-                if (campo1.getText().matches("[+-]?\\d*(\\.\\d+)?") &&
-                    campo2.getText().matches("[+-]?\\d*(\\.\\d+)?") && 
-                    campo3.getText().matches("[+-]?\\d*(\\.\\d+)?") &&
-                    campo4.getText().matches("[+-]?\\d*(\\.\\d+)?") &&
-                    campo5.getText().matches("[+-]?\\d*(\\.\\d+)?") &&
-                    campo6.getText().matches("[+-]?\\d*(\\.\\d+)?")
-                   ) 
-                    {
-                        
-                        
-                        //Obtención de pisos
-                        int aux = this.getFloors();
-                        
-                        //Obtención de parámetros
-                        float ANCHO = Float.parseFloat(campo1.getText());
-                        float LARGO = Float.parseFloat(campo3.getText());
-                        float ALTO = Float.parseFloat(campo5.getText());
-                        float ALTURA_TRABAJO = Float.parseFloat(campo2.getText());
-                        
-                        int CANTIDAD_LAMPARAS = Integer.parseInt(campo4.getText());
-                        
-                        float DESPLAZAMIENTO_LAMPARAS = Float.parseFloat(campo6.getText());
-                        
-                        //Obtención de espacios, ambiente e iluminación
-                        String aux_str = (String) combo1.getSelectedItem();
-                        String aux_str2 = (String) combo3.getSelectedItem();
-                        String aux_str3 = (String) combo5.getSelectedItem();
-                        
-                        
-                        //Constructores vacíos creados para instancias
-                        TiposEspacios aux_espacio = new TiposEspacios();
-                        TipoAmbiente aux_ambiente = new TipoAmbiente();
-                        TipoSistemaIluminacion aux_iluminacion = new TipoSistemaIluminacion();
-                        
-                        switch(aux_str)
-                        {
-                            case "SALA_DESCANSO":
-                                aux_espacio = Espacio.SALA_DESCANSO;
-                                
-                                break;
-                                
-                            case "SALA_CONFERENCIAS":
-                                aux_espacio = Espacio.SALA_CONFERENCIAS;
-                                break;
-                                
-                            case "SALONES":
-                                aux_espacio = Espacio.SALONES;
-                                break;
-                                
-                            case "HALL":
-                                aux_espacio = Espacio.HALL;
-                                break;
-                                
-                            case "RECEPCION":
-                                aux_espacio = Espacio.RECEPCION;
-                                break;
-                                
-                            case "PASILLO":
-                                aux_espacio = Espacio.PASILLO;
-                                break;
-                                
-                            case "SALA_ESPERA":
-                                aux_espacio = Espacio.SALA_ESPERA;
-                                break;
-                        }
-                        switch(aux_str2)
-                        {
-                            case "AMBIENTE_SUCIO":
-                                aux_ambiente = Espacio.AMBIENTE_SUCIO;
-                                break;
-                            case "AMBIENTE_LIMPIO":
-                                aux_ambiente = Espacio.AMBIENTE_LIMPIO;
-                                break;
-                        }
-                        switch(aux_str3)
-                        {
-                            case "ILUMINACION_DIRECTA":
-                                aux_iluminacion = Espacio.ILUMINACION_DIRECTA;
-                                break;
-                            case "ILUMINACION_INDIRECTA":
-                                aux_iluminacion = Espacio.ILUMINACION_INDIRECTA;
-                                break;
-                        }
-                        
-                        
-                        Espacio espacio = new Espacio(ANCHO, LARGO, ALTO, aux_espacio, ALTURA_TRABAJO, CANTIDAD_LAMPARAS, DESPLAZAMIENTO_LAMPARAS, aux_ambiente, aux_iluminacion);
-                        MetodoLumenes algoritmo = new MetodoLumenes();
-                        algoritmo.setEspacio(espacio);
-        
-                        espacio.setHabitabilidad(algoritmo.procesarEspacio()); 
-        
-                        //System.out.println("Espacio:" + espacio);
-                        
-                        String output = "Espacio:" + espacio;
-                        
-                        
-//                      for (int i = 0; i < aux; i++) 
-//                      {
-//                        JOptionPane.showMessageDialog(null, "Piso agregado");
-//                      }
 
-                        View4 view = new View4();
-                        view.establecerTexto(output);
-                        
-                        
-                        view.setVisible(true);
-                        this.setVisible(false);
-                    }
-                    
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null, "Error", "Error!", JOptionPane.ERROR_MESSAGE);
-                        
-                    }
-                
-            }
-            
-            
-            
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+
+        
+        
+        if (evt.getSource() == jButton4) {
+            if (campo1.getText().equals("") || campo2.getText().equals("") || campo3.getText().equals("") || campo4.getText().equals("") || campo5.getText().equals("") || campo6.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Por favor llena los campos pertinentes", "Error!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (campo1.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo2.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo3.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo4.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo5.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo6.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+                    //Output
+
+                    //Obtención de pisos
+                    int aux = this.getFloors();
+
+                    //Obtención de parámetros
+                    float ANCHO = Float.parseFloat(campo1.getText());
+                    float LARGO = Float.parseFloat(campo3.getText());
+                    float ALTO = Float.parseFloat(campo5.getText());
+                    float ALTURA_TRABAJO = Float.parseFloat(campo2.getText());
+
+                    int CANTIDAD_LAMPARAS = Integer.parseInt(campo4.getText());
+
+                    float DESPLAZAMIENTO_LAMPARAS = Float.parseFloat(campo6.getText());
+
+                    //Obtención de espacios, ambiente e iluminación
+                    String aux_str = (String) combo1.getSelectedItem();
+                    String aux_str2 = (String) combo3.getSelectedItem();
+                    String aux_str3 = (String) combo5.getSelectedItem();
+
+                    //Constructores vacíos creados para instancias
+                    TiposEspacios aux_espacio = new TiposEspacios();
+                    TipoAmbiente aux_ambiente = new TipoAmbiente();
+                    TipoSistemaIluminacion aux_iluminacion = new TipoSistemaIluminacion();
+
+                    switch (aux_str) {
+                        case "SALA_DESCANSO":
+                            aux_espacio = Espacio.SALA_DESCANSO;
+
+                            break;
+
+                        case "SALA_CONFERENCIAS":
+                            aux_espacio = Espacio.SALA_CONFERENCIAS;
+                            break;
+
+                        case "SALONES":
+                            aux_espacio = Espacio.SALONES;
+                            break;
+
+                        case "HALL":
+                            aux_espacio = Espacio.HALL;
+                            break;
+
+                        case "RECEPCION":
+                            aux_espacio = Espacio.RECEPCION;
+                            break;
+
+                        case "PASILLO":
+                            aux_espacio = Espacio.PASILLO;
+                            break;
+
+                        case "SALA_ESPERA":
+                            aux_espacio = Espacio.SALA_ESPERA;
+                            break;
+                    }
+                    switch (aux_str2) {
+                        case "AMBIENTE_SUCIO":
+                            aux_ambiente = Espacio.AMBIENTE_SUCIO;
+                            break;
+                        case "AMBIENTE_LIMPIO":
+                            aux_ambiente = Espacio.AMBIENTE_LIMPIO;
+                            break;
+                    }
+                    switch (aux_str3) {
+                        case "ILUMINACION_DIRECTA":
+                            aux_iluminacion = Espacio.ILUMINACION_DIRECTA;
+                            break;
+                        case "ILUMINACION_INDIRECTA":
+                            aux_iluminacion = Espacio.ILUMINACION_INDIRECTA;
+                            break;
+                    }
+
+                    Espacio espacio = new Espacio(ANCHO, LARGO, ALTO, aux_espacio, ALTURA_TRABAJO, CANTIDAD_LAMPARAS, DESPLAZAMIENTO_LAMPARAS, aux_ambiente, aux_iluminacion);
+
+                    MetodoLumenes algoritmo = new MetodoLumenes();
+                    algoritmo.setEspacio(espacio);
+
+                    espacio.setHabitabilidad(algoritmo.procesarEspacio());
+
+                    JOptionPane.showMessageDialog(null, "Espacio añadido al piso!");
+
+                    String output = "Espacio:" + espacio;
+                    View4 view = new View4();
+                    view.establecerTexto(output);
+
+                    view.setVisible(true);
+                    this.setVisible(false);
+                    
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                
+
+            }
+
+        }
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void campo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo3ActionPerformed

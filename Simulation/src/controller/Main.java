@@ -55,8 +55,7 @@ public class Main {
         System.out.println(ed);
         */
         
-        ControllerMain app = new ControllerMain();
-        app.runApp();
+        
 }
     
 }

@@ -5,6 +5,8 @@
  */
 package view;
 
+import model.Pisos;
+
 /**
  *
  * @author felipe
@@ -18,6 +20,9 @@ public class View4 extends javax.swing.JFrame {
     
     
     public String output;
+    
+    //Instancia de pisos
+    Pisos pisos = null;
     
     public View4() {
         setResizable(false);
@@ -136,9 +141,12 @@ public class View4 extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,7 +172,7 @@ public class View4 extends javax.swing.JFrame {
         //Nueva Simulación
         if(evt.getSource() == jButton4)
         {
-            View2 view = new View2();
+            View1 view = new View1();
             view.setVisible(true);
             this.setVisible(false);
             

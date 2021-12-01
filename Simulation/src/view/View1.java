@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.ControllerMain;
+
 /**
  *
  * @author felipe
@@ -14,6 +16,9 @@ public class View1 extends javax.swing.JFrame {
     /**
      * Creates new form View1
      */
+    
+    public int opc=0;
+    
     public View1() {
         setResizable(false);
         setLocationRelativeTo(null);
@@ -155,6 +160,7 @@ public class View1 extends javax.swing.JFrame {
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         if (evt.getSource() == btn1) {
             View2 view = new View2();
+            opc=1;
             
             view.setVisible(true);
             this.setVisible(false);
@@ -162,6 +168,19 @@ public class View1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        
+        View4 view = new View4();
+        opc=2;
+        ControllerMain app = new ControllerMain();
+        
+        //revisar ahoritasxd
+        app.runApp(opc);
+        
+        view.establecerTexto(ControllerMain.edificio.toString());
+        view.setVisible(true);
+        this.setVisible(false);
+        
+        
         
     }//GEN-LAST:event_btn2ActionPerformed
 
