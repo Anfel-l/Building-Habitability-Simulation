@@ -30,6 +30,7 @@ public class View3 extends javax.swing.JFrame {
     public View3() 
     {
         setResizable(false);
+        setLocationRelativeTo(null);
         initComponents();
     }
     
@@ -561,27 +562,26 @@ public class View3 extends javax.swing.JFrame {
         
                         espacio.setHabitabilidad(algoritmo.procesarEspacio()); 
         
-                        System.out.println("Espacio:" + espacio);
+                        //System.out.println("Espacio:" + espacio);
+                        
+                        String output = "Espacio:" + espacio;
+                        
+                        System.out.println(output);
                         
                         
                         
-                        
-                        
-                        
-//                        for (int i = 0; i < aux; i++) 
-//                        {
-//                            
-//                            
-//                            
-//                            JOptionPane.showMessageDialog(null, "Piso agregado");
-//                        }
+//                      for (int i = 0; i < aux; i++) 
+//                      {
+//                        JOptionPane.showMessageDialog(null, "Piso agregado");
+//                      }
 
 
 
 
                         
                         View4 view = new View4();
-                
+                        view.setOutput(output);
+                        
                         view.setVisible(true);
                         this.setVisible(false);
                     }

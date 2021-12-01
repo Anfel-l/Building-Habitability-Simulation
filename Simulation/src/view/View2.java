@@ -24,6 +24,7 @@ public class View2 extends javax.swing.JFrame {
     
     public View2() {
         setResizable(false);
+        setLocationRelativeTo(null);
         initComponents();
     }
 
