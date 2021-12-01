@@ -10,6 +10,7 @@ import model.Edificio;
 import model.Simulacion;
 import view.View1;
 import view.View2;
+import view.View4;
 
 /**
  *
@@ -27,23 +28,20 @@ public class ControllerMain {
     public void runApp(){
         View1 view1 = new View1();
         view1.setVisible(true);
-        
-        
         int modo=1;
+
+        view1.btn1.addActionListener((e) -> {        
         
-        switch(modo)
-        {
-            case 1:
-                runSimulation();
-                break;
-                
-            case 2:
-                runDemostracion();
-                break;
-            default:
-                runDemostracion();
-                break;
-        }
+            view1.setVisible(false);
+            runSimulation();
+        });
+        
+        view1.btn2.addActionListener((e) -> {        
+        
+            view1.setVisible(false);
+            runDemostracion();
+        });
+        
     }
     
     public void runSimulation()
@@ -63,6 +61,10 @@ public class ControllerMain {
         simulacion.CalcularHabitabilidad();
         System.out.println(ColorConsole.texto_verde+"Habitabilidad calculada...."+ColorConsole.texto_default);
         System.out.println(edificio);
+        
+        View4 view = new View4();
+        view.establecerTexto(ControllerMain.edificio.toString());
+        view.setVisible(true);
         
     }
 }

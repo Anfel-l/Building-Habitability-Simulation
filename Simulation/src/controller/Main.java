@@ -4,13 +4,7 @@
  * and open the template in the editor.
  */
 package controller;
-import java.util.Iterator;
-import java.util.LinkedList;
-import model.Edificio;
-import model.Espacio;
-import model.MetodoLumenes;
-import model.Pisos;
-import model.Simulacion;
+
 
 
 /**

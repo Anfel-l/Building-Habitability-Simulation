@@ -154,22 +154,26 @@ public class View1 extends javax.swing.JFrame {
           if(evt.getSource() == btn3){
               System.exit(0);
         }
-                              
+          
+          
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        /*
         if (evt.getSource() == btn1) {
             opc=1;
-
+            
             View2 view = new View2();
             
             view.setVisible(true);
             this.setVisible(false);
         }
+        */
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         
+        /*
         View4 view = new View4();
         opc=2;
         ControllerMain app = new ControllerMain();
@@ -180,7 +184,7 @@ public class View1 extends javax.swing.JFrame {
         view.establecerTexto(ControllerMain.edificio.toString());
         view.setVisible(true);
         this.setVisible(false);
-        
+        */
         
         
     }//GEN-LAST:event_btn2ActionPerformed
@@ -225,8 +229,8 @@ public class View1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
-    private javax.swing.JButton btn2;
+    public javax.swing.JButton btn1;
+    public javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
     private javax.swing.JLabel jLabel1;
