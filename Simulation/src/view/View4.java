@@ -25,6 +25,7 @@ public class View4 extends javax.swing.JFrame {
     Pisos pisos = null;
     
     public View4() {
+        setTitle("Luminic habitability simulation");
         setResizable(false);
         setLocationRelativeTo(null);
         

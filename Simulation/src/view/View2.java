@@ -18,6 +18,7 @@ public class View2 extends javax.swing.JFrame {
      */
     
     public View2() {
+        setTitle("Luminic habitability simulation");
         setResizable(false);
         setLocationRelativeTo(null);
         initComponents();

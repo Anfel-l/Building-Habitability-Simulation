@@ -34,6 +34,7 @@ public class View3 extends javax.swing.JFrame {
     public int piso_actual;
 
     public View3() {
+        setTitle("Luminic habitability simulation");
         piso_actual=0;
         setResizable(false);
         setLocationRelativeTo(null);

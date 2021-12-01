@@ -6,6 +6,7 @@
 package view;
 
 import controller.ControllerMain;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +21,7 @@ public class View1 extends javax.swing.JFrame {
     public int opc=0;
     
     public View1() {
+        setTitle("Luminic habitability simulation");
         setResizable(false);
         setLocationRelativeTo(null);
         initComponents();
@@ -186,7 +188,23 @@ public class View1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        // TODO add your handling code here:
+        if (evt.getSource()== btn4) 
+        {
+            JOptionPane.showMessageDialog(null,
+                    "Developed by: \n"  
+                  + "Nilson Felipe Vargas \n"
+                  + "Anderson Arbey Pedroza \n"
+                  + "Andrés Felipe Lugo \n"
+                  + "\n"
+                  + "2021"
+                    
+                    , "Info", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_btn4ActionPerformed
 
     /**

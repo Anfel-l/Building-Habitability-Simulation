@@ -25,6 +25,7 @@ public class Simulacion {
     }
     
     public Simulacion() {
+        
         this.edificio = null;
         this.algoritmo = new MetodoLumenes();
     }
