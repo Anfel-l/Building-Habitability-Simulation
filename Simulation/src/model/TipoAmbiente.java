@@ -23,6 +23,11 @@ public class TipoAmbiente {
         this.tipo_ambiente = tipo_ambiente;
         this.valor = valor;
     }
+    
+    public TipoAmbiente()
+    {
+        
+    }
 
     @Override
     public String toString() {

@@ -22,9 +22,9 @@ public class ControllerMain {
         this.simulacion = new Simulacion();
     }
   
-    public void runApp(){
+    public void runApp(int modo){
         //Implementar metodo para obtener si el programa inicia una simulacion o una demostracion
-        int modo = 0;
+        
         switch(modo)
         {
             case 1:
@@ -42,7 +42,7 @@ public class ControllerMain {
     
     public void runSimulation()
     {
-        //Implemen
+        
     }
     
     public void runDemostracion()

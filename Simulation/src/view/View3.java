@@ -5,6 +5,19 @@
  */
 package view;
 
+import controller.ControllerMain;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import model.Edificio;
+import model.Espacio;
+import model.MetodoLumenes;
+import model.Pisos;
+import model.Simulacion;
+import model.TipoAmbiente;
+import model.TipoSistemaIluminacion;
+import model.TiposEspacios;
+import model.TiposLamparas;
+
 /**
  *
  * @author felipe
@@ -14,8 +27,43 @@ public class View3 extends javax.swing.JFrame {
     /**
      * Creates new form View3
      */
+    public static int floors;
+    public LinkedList<Pisos> pisos;
+    public LinkedList<Espacio> espacios;
+    
+    public int piso_actual;
+
     public View3() {
+        piso_actual=0;
+        setResizable(false);
+        setLocationRelativeTo(null);
         initComponents();
+        initEdificio();
+    }
+
+    public int getFloors() {
+        return floors;
+    }
+
+    public void setFloors(int floors) {
+        this.floors = floors;
+    }
+    
+    public void resetInputs()
+    {
+        campo1.setText("");
+        campo2.setText("");
+        campo3.setText("");
+        campo4.setText("");
+        campo5.setText("");
+        campo6.setText("");
+    }
+    
+    public void initEdificio()
+    {
+        pisos = new Simulacion().fabricar_falsos_pisos(getFloors());
+        espacios = new LinkedList<Espacio>();
+     
     }
 
     /**
@@ -34,25 +82,27 @@ public class View3 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        combo1 = new javax.swing.JComboBox<>();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campo5 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        campo6 = new javax.swing.JTextField();
         jLayeredPane3 = new javax.swing.JLayeredPane();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        campo3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        campo4 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jLabel14 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        campo1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        campo2 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        combo3 = new javax.swing.JComboBox<>();
+        combo5 = new javax.swing.JComboBox<>();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -91,23 +141,20 @@ public class View3 extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Fira Code", 0, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(108, 131, 132));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel8.setFont(new java.awt.Font("Fira Code", 1, 22)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 249, 255));
-        jLabel8.setText("Light type");
-        jLabel8.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
-
         jLabel9.setFont(new java.awt.Font("Fira Code", 1, 22)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 249, 255));
         jLabel9.setText("Area type");
         jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
 
-        jComboBox2.setFont(new java.awt.Font("Fira Code", 0, 18)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(108, 131, 132));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo1.setFont(new java.awt.Font("Fira Code", 0, 12)); // NOI18N
+        combo1.setForeground(new java.awt.Color(108, 131, 132));
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SALA_DESCANSO", "PASILLO", "RECEPCION", "SALA_CONFERENCIAS", "SALA_ESPERA", "HALL", "SALONES" }));
+        combo1.setToolTipText("");
+        combo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo1ActionPerformed(evt);
+            }
+        });
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 246)));
         jLayeredPane1.setForeground(new java.awt.Color(0, 255, 246));
@@ -117,12 +164,12 @@ public class View3 extends javax.swing.JFrame {
         jLabel1.setText("Heigth");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
 
-        jTextField1.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField1.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(108, 131, 132));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        campo5.setBackground(new java.awt.Color(254, 254, 254));
+        campo5.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
+        campo5.setForeground(new java.awt.Color(108, 131, 132));
+        campo5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                campo5ActionPerformed(evt);
             }
         });
 
@@ -131,19 +178,19 @@ public class View3 extends javax.swing.JFrame {
         jLabel7.setText("Light displacement");
         jLabel7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
 
-        jTextField6.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField6.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(108, 131, 132));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        campo6.setBackground(new java.awt.Color(254, 254, 254));
+        campo6.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
+        campo6.setForeground(new java.awt.Color(108, 131, 132));
+        campo6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                campo6ActionPerformed(evt);
             }
         });
 
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(campo5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jTextField6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(campo6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -158,8 +205,8 @@ public class View3 extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campo6, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campo5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -171,28 +218,23 @@ public class View3 extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jLabel7)
                 .addGap(33, 33, 33)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jLayeredPane3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 246)));
         jLayeredPane3.setForeground(new java.awt.Color(0, 255, 246));
 
-        jLabel12.setFont(new java.awt.Font("Fira Code", 1, 22)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 249, 255));
-        jLabel12.setText("Lenght");
-        jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
-
-        jTextField9.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField9.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(108, 131, 132));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        campo3.setBackground(new java.awt.Color(254, 254, 254));
+        campo3.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
+        campo3.setForeground(new java.awt.Color(108, 131, 132));
+        campo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                campo3ActionPerformed(evt);
             }
         });
 
@@ -201,52 +243,61 @@ public class View3 extends javax.swing.JFrame {
         jLabel13.setText("Light sources");
         jLabel13.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
 
-        jTextField10.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField10.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(108, 131, 132));
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        campo4.setBackground(new java.awt.Color(254, 254, 254));
+        campo4.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
+        campo4.setForeground(new java.awt.Color(108, 131, 132));
+        campo4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                campo4ActionPerformed(evt);
             }
         });
 
-        jLayeredPane3.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(jTextField9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel16.setFont(new java.awt.Font("Fira Code", 1, 22)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 249, 255));
+        jLabel16.setText("Lenght");
+        jLabel16.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
+
+        jLayeredPane3.setLayer(campo3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(jTextField10, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(campo4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
         jLayeredPane3.setLayout(jLayeredPane3Layout);
         jLayeredPane3Layout.setHorizontalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
                         .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campo4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campo3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(50, 50, 50))))
+            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+                    .addContainerGap(110, Short.MAX_VALUE)
+                    .addComponent(jLabel16)
+                    .addGap(98, 98, 98)))
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel12)
-                .addGap(31, 31, 31)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
+                .addComponent(campo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jLabel13)
                 .addGap(30, 30, 30)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                    .addGap(51, 51, 51)
+                    .addComponent(jLabel16)
+                    .addContainerGap(239, Short.MAX_VALUE)))
         );
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 246)));
@@ -257,12 +308,12 @@ public class View3 extends javax.swing.JFrame {
         jLabel14.setText("Width");
         jLabel14.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
 
-        jTextField11.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField11.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
-        jTextField11.setForeground(new java.awt.Color(108, 131, 132));
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        campo1.setBackground(new java.awt.Color(254, 254, 254));
+        campo1.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
+        campo1.setForeground(new java.awt.Color(108, 131, 132));
+        campo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                campo1ActionPerformed(evt);
             }
         });
 
@@ -271,19 +322,19 @@ public class View3 extends javax.swing.JFrame {
         jLabel15.setText("Working Area");
         jLabel15.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
 
-        jTextField12.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField12.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
-        jTextField12.setForeground(new java.awt.Color(108, 131, 132));
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+        campo2.setBackground(new java.awt.Color(254, 254, 254));
+        campo2.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
+        campo2.setForeground(new java.awt.Color(108, 131, 132));
+        campo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
+                campo2ActionPerformed(evt);
             }
         });
 
         jLayeredPane4.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane4.setLayer(jTextField11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane4.setLayer(campo1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane4.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane4.setLayer(jTextField12, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane4.setLayer(campo2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane4Layout = new javax.swing.GroupLayout(jLayeredPane4);
         jLayeredPane4.setLayout(jLayeredPane4Layout);
@@ -292,8 +343,8 @@ public class View3 extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane4Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campo2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
             .addGroup(jLayeredPane4Layout.createSequentialGroup()
                 .addGroup(jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,76 +362,105 @@ public class View3 extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel14)
                 .addGap(31, 31, 31)
-                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jLabel15)
                 .addGap(33, 33, 33)
-                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
+
+        jLabel10.setFont(new java.awt.Font("Fira Code", 1, 22)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 249, 255));
+        jLabel10.setText("Ilumination System");
+        jLabel10.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
+
+        jLabel11.setFont(new java.awt.Font("Fira Code", 1, 22)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 249, 255));
+        jLabel11.setText("Ambient type");
+        jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
+
+        combo3.setFont(new java.awt.Font("Fira Code", 0, 12)); // NOI18N
+        combo3.setForeground(new java.awt.Color(108, 131, 132));
+        combo3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AMBIENTE_LIMPIO", "AMBIENTE_SUCIO" }));
+
+        combo5.setFont(new java.awt.Font("Fira Code", 0, 12)); // NOI18N
+        combo5.setForeground(new java.awt.Color(108, 131, 132));
+        combo5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ILUMINACION_DIRECTA", "ILUMINACION_INDIRECTA" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(335, 335, 335)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(312, 312, 312))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(33, 33, 33))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(85, 85, 85)
-                                        .addComponent(jLabel9)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(43, 43, 43)
-                                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(113, 113, 113)
-                                        .addComponent(jLabel8)))))
-                        .addGap(33, 33, 33))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel9)
+                                .addGap(283, 283, 283)
+                                .addComponent(jLabel11))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(264, 264, 264)
+                                .addComponent(combo3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(246, 246, 246)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 79, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(combo5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(53, 53, 53))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(82, 82, 82)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel11)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combo3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(127, 127, 127)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(combo5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -397,37 +477,180 @@ public class View3 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void campo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_campo5ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void campo6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_campo6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        
+        resetInputs();
+        pisos.get(piso_actual).setEspacios(espacios);
+        
+        LinkedList<Espacio> espacios_aux = new LinkedList<Espacio>();
+        espacios = espacios_aux;
+                
+        piso_actual++;
+        
+        
+        if (piso_actual==getFloors()-1) 
+        {
+            jButton3.setText("Finish");
+        }
+        else if(piso_actual == getFloors())
+        {
+            View4 view = new View4();
+            view.setVisible(true);
+            this.setVisible(false);
+            
+            
+            
+            ControllerMain.edificio = new Edificio(pisos);
+            Simulacion simp = new Simulacion(ControllerMain.edificio);
+            
+            simp.CalcularHabitabilidad();
+            
+            view.establecerTexto(ControllerMain.edificio.toString());
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
+        
+        if (evt.getSource() == jButton4) {
+            if (campo1.getText().equals("") || campo2.getText().equals("") || campo3.getText().equals("") || campo4.getText().equals("") || campo5.getText().equals("") || campo6.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Por favor llena los campos pertinentes", "Error!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (campo1.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo2.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo3.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo4.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo5.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                        && campo6.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+                    //Output
+
+                    //Obtención de pisos
+                    int aux = this.getFloors();
+
+                    //Obtención de parámetros
+                    float ANCHO = Float.parseFloat(campo1.getText());
+                    float LARGO = Float.parseFloat(campo3.getText());
+                    float ALTO = Float.parseFloat(campo5.getText());
+                    float ALTURA_TRABAJO = Float.parseFloat(campo2.getText());
+
+                    int CANTIDAD_LAMPARAS = Integer.parseInt(campo4.getText());
+
+                    float DESPLAZAMIENTO_LAMPARAS = Float.parseFloat(campo6.getText());
+
+                    //Obtención de espacios, ambiente e iluminación
+                    String aux_str = (String) combo1.getSelectedItem();
+                    String aux_str2 = (String) combo3.getSelectedItem();
+                    String aux_str3 = (String) combo5.getSelectedItem();
+
+                    //Constructores vacíos creados para instancias
+                    TiposEspacios aux_espacio = new TiposEspacios();
+                    TipoAmbiente aux_ambiente = new TipoAmbiente();
+                    TipoSistemaIluminacion aux_iluminacion = new TipoSistemaIluminacion();
+
+                    switch (aux_str) {
+                        case "SALA_DESCANSO":
+                            aux_espacio = Espacio.SALA_DESCANSO;
+
+                            break;
+
+                        case "SALA_CONFERENCIAS":
+                            aux_espacio = Espacio.SALA_CONFERENCIAS;
+                            break;
+
+                        case "SALONES":
+                            aux_espacio = Espacio.SALONES;
+                            break;
+
+                        case "HALL":
+                            aux_espacio = Espacio.HALL;
+                            break;
+
+                        case "RECEPCION":
+                            aux_espacio = Espacio.RECEPCION;
+                            break;
+
+                        case "PASILLO":
+                            aux_espacio = Espacio.PASILLO;
+                            break;
+
+                        case "SALA_ESPERA":
+                            aux_espacio = Espacio.SALA_ESPERA;
+                            break;
+                    }
+                    switch (aux_str2) {
+                        case "AMBIENTE_SUCIO":
+                            aux_ambiente = Espacio.AMBIENTE_SUCIO;
+                            break;
+                        case "AMBIENTE_LIMPIO":
+                            aux_ambiente = Espacio.AMBIENTE_LIMPIO;
+                            break;
+                    }
+                    switch (aux_str3) {
+                        case "ILUMINACION_DIRECTA":
+                            aux_iluminacion = Espacio.ILUMINACION_DIRECTA;
+                            break;
+                        case "ILUMINACION_INDIRECTA":
+                            aux_iluminacion = Espacio.ILUMINACION_INDIRECTA;
+                            break;
+                    }
+
+                    Espacio espacio = new Espacio(ANCHO, LARGO, ALTO, aux_espacio, ALTURA_TRABAJO, CANTIDAD_LAMPARAS, DESPLAZAMIENTO_LAMPARAS, aux_ambiente, aux_iluminacion);
+                    
+                    System.out.println(espacio);
+                    
+                    //Añadir espacio
+                    espacios.add(espacio);
+                    JOptionPane.showMessageDialog(null, "Espacio añadido al piso!");
+                    
+                    
+                    
+                    
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                
+                
+                
+
+            }
+
+        }
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void campo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_campo3ActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void campo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_campo1ActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void campo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_campo2ActionPerformed
 
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+    private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
+    }//GEN-LAST:event_combo1ActionPerformed
+
+    private void campo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,18 +688,26 @@ public class View3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campo1;
+    private javax.swing.JTextField campo2;
+    private javax.swing.JTextField campo3;
+    private javax.swing.JTextField campo4;
+    private javax.swing.JTextField campo5;
+    private javax.swing.JTextField campo6;
+    private javax.swing.JComboBox<String> combo1;
+    private javax.swing.JComboBox<String> combo3;
+    private javax.swing.JComboBox<String> combo5;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane3;
@@ -485,11 +716,5 @@ public class View3 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

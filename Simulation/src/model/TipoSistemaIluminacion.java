@@ -18,6 +18,11 @@ public class TipoSistemaIluminacion {
         this.nombre = nombre;
         this.value = value;
     }
+    
+    public TipoSistemaIluminacion()
+    {
+        
+    }
 
     @Override
     public String toString() {
