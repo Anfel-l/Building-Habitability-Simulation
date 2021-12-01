@@ -48,7 +48,7 @@ public class ControllerMain {
     public void runDemostracion()
     {
         //Implementar metodo para correr la demostracion
-        edificio = simulacion.fabricar_falso_edificio(5, 3);
+        edificio = simulacion.fabricar_falso_edificio(10, 50);
         System.out.println(ColorConsole.texto_verde+"Edificio creado: OK"+ColorConsole.texto_default);
         System.out.println(edificio);
         System.out.println(ColorConsole.texto_rojo+"Calculando habitabilidad"+ColorConsole.texto_default);
