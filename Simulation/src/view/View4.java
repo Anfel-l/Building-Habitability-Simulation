@@ -43,8 +43,7 @@ public class View4 extends javax.swing.JFrame {
     public void establecerTexto(String aux)
     {
         jTextArea1.setText(aux);
-    
-    }
+     }
     
     
 

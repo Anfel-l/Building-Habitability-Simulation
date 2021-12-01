@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.ControllerMain;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import model.Edificio;
@@ -26,12 +27,18 @@ public class View3 extends javax.swing.JFrame {
     /**
      * Creates new form View3
      */
-    public int floors;
+    public static int floors;
+    public LinkedList<Pisos> pisos;
+    public LinkedList<Espacio> espacios;
+    
+    public int piso_actual;
 
     public View3() {
+        piso_actual=0;
         setResizable(false);
         setLocationRelativeTo(null);
         initComponents();
+        initEdificio();
     }
 
     public int getFloors() {
@@ -50,6 +57,13 @@ public class View3 extends javax.swing.JFrame {
         campo4.setText("");
         campo5.setText("");
         campo6.setText("");
+    }
+    
+    public void initEdificio()
+    {
+        pisos = new Simulacion().fabricar_falsos_pisos(getFloors());
+        espacios = new LinkedList<Espacio>();
+     
     }
 
     /**
@@ -76,10 +90,10 @@ public class View3 extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         campo6 = new javax.swing.JTextField();
         jLayeredPane3 = new javax.swing.JLayeredPane();
-        jLabel12 = new javax.swing.JLabel();
         campo3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         campo4 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jLabel14 = new javax.swing.JLabel();
         campo1 = new javax.swing.JTextField();
@@ -106,7 +120,7 @@ public class View3 extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(0, 255, 249));
         jButton3.setFont(new java.awt.Font("Fira Code", 1, 20)); // NOI18N
         jButton3.setForeground(new java.awt.Color(108, 131, 132));
-        jButton3.setText("Finish");
+        jButton3.setText("Next Floor");
         jButton3.setBorderPainted(false);
         jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -215,11 +229,6 @@ public class View3 extends javax.swing.JFrame {
         jLayeredPane3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 246)));
         jLayeredPane3.setForeground(new java.awt.Color(0, 255, 246));
 
-        jLabel12.setFont(new java.awt.Font("Fira Code", 1, 22)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 249, 255));
-        jLabel12.setText("Lenght");
-        jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
-
         campo3.setBackground(new java.awt.Color(254, 254, 254));
         campo3.setFont(new java.awt.Font("Fira Code", 1, 16)); // NOI18N
         campo3.setForeground(new java.awt.Color(108, 131, 132));
@@ -243,19 +252,20 @@ public class View3 extends javax.swing.JFrame {
             }
         });
 
-        jLayeredPane3.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel16.setFont(new java.awt.Font("Fira Code", 1, 22)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 249, 255));
+        jLabel16.setText("Lenght");
+        jLabel16.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(18, 238, 235)));
+
         jLayeredPane3.setLayer(campo3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(campo4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
         jLayeredPane3.setLayout(jLayeredPane3Layout);
         jLayeredPane3Layout.setHorizontalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,19 +277,27 @@ public class View3 extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(50, 50, 50))))
+            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+                    .addContainerGap(110, Short.MAX_VALUE)
+                    .addComponent(jLabel16)
+                    .addGap(98, 98, 98)))
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel12)
-                .addGap(31, 31, 31)
+                .addGap(102, 102, 102)
                 .addComponent(campo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jLabel13)
                 .addGap(30, 30, 30)
                 .addComponent(campo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                    .addGap(51, 51, 51)
+                    .addComponent(jLabel16)
+                    .addContainerGap(239, Short.MAX_VALUE)))
         );
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 246)));
@@ -375,6 +393,10 @@ public class View3 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(335, 335, 335)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -410,10 +432,6 @@ public class View3 extends javax.swing.JFrame {
                                     .addComponent(combo5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(53, 53, 53))))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(335, 335, 335)
-                .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,12 +486,41 @@ public class View3 extends javax.swing.JFrame {
     }//GEN-LAST:event_campo6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+        
+        resetInputs();
+        pisos.get(piso_actual).setEspacios(espacios);
+        
+        LinkedList<Espacio> espacios_aux = new LinkedList<Espacio>();
+        espacios = espacios_aux;
+                
+        piso_actual++;
+        
+        
+        if (piso_actual==getFloors()-1) 
+        {
+            jButton3.setText("Finish");
+        }
+        else if(piso_actual == getFloors())
+        {
+            View4 view = new View4();
+            view.setVisible(true);
+            this.setVisible(false);
+            
+            
+            
+            ControllerMain.edificio = new Edificio(pisos);
+            Simulacion simp = new Simulacion(ControllerMain.edificio);
+            
+            simp.CalcularHabitabilidad();
+            
+            view.establecerTexto(ControllerMain.edificio.toString());
+        }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        
+        
         
         
         if (evt.getSource() == jButton4) {
@@ -559,25 +606,22 @@ public class View3 extends javax.swing.JFrame {
                     }
 
                     Espacio espacio = new Espacio(ANCHO, LARGO, ALTO, aux_espacio, ALTURA_TRABAJO, CANTIDAD_LAMPARAS, DESPLAZAMIENTO_LAMPARAS, aux_ambiente, aux_iluminacion);
-
-                    MetodoLumenes algoritmo = new MetodoLumenes();
-                    algoritmo.setEspacio(espacio);
-
-                    espacio.setHabitabilidad(algoritmo.procesarEspacio());
-
+                    
+                    System.out.println(espacio);
+                    
+                    //Añadir espacio
+                    espacios.add(espacio);
                     JOptionPane.showMessageDialog(null, "Espacio añadido al piso!");
-
-                    String output = "Espacio:" + espacio;
-                    View4 view = new View4();
-                    view.establecerTexto(output);
-
-                    view.setVisible(true);
-                    this.setVisible(false);
+                    
+                    
+                    
                     
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "Error", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
+                
+                
                 
                 
 
@@ -658,10 +702,10 @@ public class View3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;

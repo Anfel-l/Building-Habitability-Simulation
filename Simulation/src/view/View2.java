@@ -129,10 +129,16 @@ public class View2 extends javax.swing.JFrame {
             {
                 if (jTextField1.getText().matches("[+-]?\\d*(\\.\\d+)?")) 
                     {
+                        
+                        
+                        int valor = Integer.parseInt(jTextField1.getText());
+                        View3.floors = valor;
+                        
                         View3 view = new View3();
                         
-                        view.setFloors(Integer.parseInt(jTextField1.getText()));
-                
+                        
+                        
+                        
                         view.setVisible(true);
                         this.setVisible(false);
                     }
