@@ -8,6 +8,8 @@ package controller;
 import model.ColorConsole;
 import model.Edificio;
 import model.Simulacion;
+import view.View1;
+import view.View2;
 
 /**
  *
@@ -22,8 +24,12 @@ public class ControllerMain {
         this.simulacion = new Simulacion();
     }
   
-    public void runApp(int modo){
-        //Implementar metodo para obtener si el programa inicia una simulacion o una demostracion
+    public void runApp(){
+        View1 view1 = new View1();
+        view1.setVisible(true);
+        
+        
+        int modo=1;
         
         switch(modo)
         {
@@ -42,13 +48,14 @@ public class ControllerMain {
     
     public void runSimulation()
     {
-        
-    }
+        View2 view = new View2();
+        view.setVisible(true);
+     }
     
     public void runDemostracion()
     {
         //Implementar metodo para correr la demostracion
-        edificio = simulacion.fabricar_falso_edificio(10, 50);
+        edificio = simulacion.fabricar_falso_edificio(5, 5);
         System.out.println(ColorConsole.texto_verde+"Edificio creado: OK"+ColorConsole.texto_default);
         System.out.println(edificio);
         System.out.println(ColorConsole.texto_rojo+"Calculando habitabilidad"+ColorConsole.texto_default);

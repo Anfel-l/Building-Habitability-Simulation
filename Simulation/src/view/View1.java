@@ -159,8 +159,9 @@ public class View1 extends javax.swing.JFrame {
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         if (evt.getSource() == btn1) {
-            View2 view = new View2();
             opc=1;
+
+            View2 view = new View2();
             
             view.setVisible(true);
             this.setVisible(false);
@@ -174,7 +175,7 @@ public class View1 extends javax.swing.JFrame {
         ControllerMain app = new ControllerMain();
         
         //revisar ahoritasxd
-        app.runApp(opc);
+        //app.runApp(opc);
         
         view.establecerTexto(ControllerMain.edificio.toString());
         view.setVisible(true);
